@@ -1,19 +1,19 @@
 <section id="mediciones" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
 <div style="display:flex;flex-direction:column;gap:12px">
 <p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Anexo A2 · Mediciones</p>
-<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:48px;font-weight:700;line-height:1.1;color:#2E2A28">Las tres PDP muestran el mismo patrón: la foto tarda 8–11 s en celular y ~2 s en computador</h2>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:48px;font-weight:700;line-height:1.1;color:#2E2A28">Las tres PDP muestran el mismo patrón: la foto tarda 8–11 s en móvil y ~2 s en desktop</h2>
 </div>
 <table style="font-size:24px;color:#444444;border:1px solid #E4E0DC">
 <tr style="background:#F0ECE7"><th style="width:13%">PDP</th><th style="width:13%">Dispositivo</th><th style="width:10%">LCP L1</th><th style="width:10%">LCP L2</th><th style="width:10%">Mediana</th><th style="width:26%">Elemento LCP</th><th style="width:18%">Foto cargada</th></tr>
 <tr><td>OPPO A6</td><td>Móvil</td><td>5,72 s</td><td>5,01 s</td><td>5,37 s</td><td>Banner (fondo CSS)</td><td style="color:#DD171B">10,98 / 10,97 s</td></tr>
-<tr><td>OPPO A6</td><td>Escritorio</td><td>2,40 s</td><td>2,20 s</td><td>2,30 s</td><td>Foto</td><td>0,51 s</td></tr>
+<tr><td>OPPO A6</td><td>Desktop</td><td>2,40 s</td><td>2,20 s</td><td>2,30 s</td><td>Foto</td><td>0,51 s</td></tr>
 <tr><td>Dell 15,6″</td><td>Móvil</td><td style="color:#DD171B">9,15 s</td><td style="color:#DD171B">8,83 s</td><td style="color:#DD171B">8,99 s</td><td>H1 movido por JS (ya pintado a 4,7 s)</td><td style="color:#DD171B">10,38 / 10,21 s</td></tr>
-<tr><td>Dell 15,6″</td><td>Escritorio</td><td>1,90 s</td><td>1,90 s</td><td>1,90 s</td><td>Foto</td><td>–</td></tr>
+<tr><td>Dell 15,6″</td><td>Desktop</td><td>1,90 s</td><td>1,90 s</td><td>1,90 s</td><td>Foto</td><td>–</td></tr>
 <tr><td>Whirlpool</td><td>Móvil</td><td>5,50 s</td><td style="color:#DD171B">10,10 s</td><td>7,80 s</td><td>L1 banner · L2 foto</td><td style="color:#DD171B">10,93 / 9,39 s</td></tr>
-<tr><td>Whirlpool</td><td>Escritorio</td><td style="color:#DD171B">17,08 s</td><td>2,01 s</td><td>(9,5 s)</td><td>Foto (L1: CSS de jsDelivr colgado 15,4 s)</td><td>–</td></tr>
+<tr><td>Whirlpool</td><td>Desktop</td><td style="color:#DD171B">17,08 s</td><td>2,01 s</td><td>(9,5 s)</td><td>Foto (L1: CSS de jsDelivr colgado 15,4 s)</td><td>–</td></tr>
 </table>
-<p style="font-size:24px;line-height:1.35;color:#5C5C5C">2 corridas por caso, caché fría; con 2 corridas la mediana es el promedio. Móvil: Slow 4G · CPU 4× · 412×823. Escritorio: sin limitación · 1440×900.</p>
+<p style="font-size:24px;line-height:1.35;color:#5C5C5C">2 corridas por caso, caché fría; con 2 corridas la mediana es el promedio. Móvil: Slow 4G · CPU 4× · 412×823. Desktop: sin limitación · 1440×900.</p>
 <p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
 <p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">A2</p>
-<aside>El patrón se repite en las tres PDP. En móvil la foto llega entre 9,4 y 11 segundos. En escritorio el LCP está entre 1,9 y 2,4 segundos. Dos casos especiales: en Dell móvil el LCP es el título H1, que un script mueve de lugar después de cargar. Y en Whirlpool escritorio una corrida dio 17 segundos porque un CSS de jsDelivr se colgó 15 segundos. Valores en rojo: fuera de lo aceptable.</aside>
+<aside>El patrón se repite en las tres PDP. En móvil la foto llega entre 9,4 y 11 segundos. En desktop el LCP está entre 1,9 y 2,4 segundos. Dos casos especiales: en Dell móvil el LCP es el título H1, que un script mueve de lugar después de cargar. Y en Whirlpool desktop una corrida dio 17 segundos porque un CSS de jsDelivr se colgó 15 segundos. Valores en rojo: fuera de lo aceptable.</aside>
 </section>

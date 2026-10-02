@@ -11,12 +11,12 @@
 <div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:12px;padding:24px 28px">
 <p style="font-size:28px;font-weight:700;color:#2E2A28">2 · Preload alineado</p>
 <p style="font-size:24px;line-height:1.35">Misma URL que pide Sirv, carácter por carácter:</p>
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.4;color:#2E2A28">celular:<br>&#160;…w=400&amp;h=0<br>computador:<br>&#160;…w=700&amp;h=0</p>
-<p style="font-size:24px;line-height:1.35;color:#DD171B">Hoy: w=800&amp;h=0&amp;q=60 en celular (no coincide) y otra ruta en computador.</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.4;color:#2E2A28">móvil:<br>&#160;…w=400&amp;h=0<br>desktop:<br>&#160;…w=700&amp;h=0</p>
+<p style="font-size:24px;line-height:1.35;color:#DD171B">Hoy: w=800&amp;h=0&amp;q=60 en móvil (no coincide) y otra ruta en desktop.</p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:12px;padding:24px 28px">
 <p style="font-size:28px;font-weight:700;color:#2E2A28">3 · CSS de relevo</p>
-<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.4;color:#2E2A28">.pdp-foto {<br>&#160;position:absolute;<br>&#160;object-fit:contain }<br>/* misma área que Sirv */<br>celular: inset 0 0 70px 0<br>computador: inset 0 0 0 95px<br>.is-ready .pdp-foto {<br>&#160;visibility:hidden }</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;line-height:1.4;color:#2E2A28">.pdp-foto {<br>&#160;position:absolute;<br>&#160;object-fit:contain }<br>/* misma área que Sirv */<br>móvil: inset 0 0 70px 0<br>desktop: inset 0 0 0 95px<br>.is-ready .pdp-foto {<br>&#160;visibility:hidden }</p>
 </div>
 </div>
 <p style="font-size:24px;line-height:1.35">La foto va <b>al lado</b> del visor de Sirv, no adentro. Sin <b>loading="lazy"</b>. Sin JavaScript nuevo: <b>initSirv()</b> ya marca <b>is-ready</b>. Guía completa: docs/03-implementacion-foto-sirv.md en el repositorio.</p>

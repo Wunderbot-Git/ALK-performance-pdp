@@ -9,7 +9,7 @@
 <ul style="font-size:24px;line-height:1.4">
 <li>Chrome DevTools: trazas de rendimiento, Resource Timing, LCP y Long Animation Frames</li>
 <li>Cada corrida en un contexto de navegador nuevo y aislado (caché fría)</li>
-<li>Móvil: 412×823, Slow 4G, CPU 4×. Escritorio: 1440×900, sin limitación</li>
+<li>Móvil: 412×823, Slow 4G, CPU 4×. Desktop: 1440×900, sin limitación</li>
 <li>Contrastado con una segunda auditoría independiente (Playwright, Chrome 154, 12 corridas base)</li>
 <li>Prototipo: HTML modificado en vuelo, 4 variantes × 5 corridas</li>
 <li>Sin clics, sin aceptar cookies, nada al carrito</li>
@@ -19,7 +19,7 @@
 <h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Campo (CrUX, p75)</h3>
 <ul style="font-size:24px;line-height:1.4">
 <li>OPPO móvil: LCP 2,49 s · INP 229 ms · CLS 0,05</li>
-<li>OPPO escritorio: LCP 2,76 s · TTFB 953 ms · CLS 0,16</li>
+<li>OPPO desktop: LCP 2,76 s · TTFB 953 ms · CLS 0,16</li>
 <li>Dell móvil: LCP 3,07 s · TTFB 849 ms · INP 166 ms</li>
 <li>Whirlpool: sin datos en CrUX</li>
 </ul>
@@ -28,5 +28,5 @@
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
 <p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">A12</p>
-<aside>Sobre el método: el laboratorio simula un teléfono lento con red lenta y caché vacía, a propósito más exigente que el usuario promedio. Los datos de campo de Chrome confirman que el problema es real: LCP de 2,5 a 3,1 segundos en el percentil 75, con el retraso de carga y el TTFB como partes más grandes. La campaña Expotronika del preheader es temporal; con otro banner puede cambiar el elemento LCP que reporta Chrome en móvil.</aside>
+<aside>Sobre el método: el laboratorio simula un móvil lento con red lenta y caché vacía, a propósito más exigente que el usuario promedio. Los datos de campo de Chrome confirman que el problema es real: LCP de 2,5 a 3,1 segundos en el percentil 75, con el retraso de carga y el TTFB como partes más grandes. La campaña Expotronika del preheader es temporal; con otro banner puede cambiar el elemento LCP que reporta Chrome en móvil.</aside>
 </section>

@@ -5,7 +5,7 @@
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
 <div style="display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
-<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Escritorio: cargada, no pintada</h3>
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Desktop: cargada, no pintada</h3>
 <p style="font-size:24px;line-height:1.4">La imagen carga en 0,4–0,5 s gracias al preload. Los 1,4–1,9 s de retraso de render se van en sirv.js → JSON .view → armar la galería.</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
@@ -23,5 +23,5 @@
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
 <p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">A7</p>
-<aside>Cuatro hallazgos adicionales. Uno: en escritorio la imagen ya está, pero no se pinta hasta que Sirv arma la galería. Dos: en móvil precargamos una versión de la imagen que Sirv nunca usa. Tres: el banner del preheader es un fondo CSS, y esos se descargan tarde. Cuatro: el HTML no está en caché en el CDN, lo que cuesta casi un segundo de TTFB para usuarios reales.</aside>
+<aside>Cuatro hallazgos adicionales. Uno: en desktop la imagen ya está, pero no se pinta hasta que Sirv arma la galería. Dos: en móvil precargamos una versión de la imagen que Sirv nunca usa. Tres: el banner del preheader es un fondo CSS, y esos se descargan tarde. Cuatro: el HTML no está en caché en el CDN, lo que cuesta casi un segundo de TTFB para usuarios reales.</aside>
 </section>
