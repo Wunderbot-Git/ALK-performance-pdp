@@ -1,0 +1,115 @@
+{
+  "etiqueta": "movil-base-1",
+  "variante": "base",
+  "repeticion": 1,
+  "perfil": "movil",
+  "url": "https://www.alkosto.com/celular-oppo-a6-256gb-4g-azul/p/6932169397902",
+  "fecha": "2026-10-02T15:21:33.149Z",
+  "navegador": "154.0.8037.95",
+  "errorNavegacion": null,
+  "transformaciones": [],
+  "fotoVisible": 7712,
+  "fotoFijaPintada": null,
+  "fotoComoLcp": {
+    "t": 7712,
+    "tag": "IMG",
+    "id": "smv-al-8745436",
+    "cls": "smv-cursor-zoom-in",
+    "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=400&h=0",
+    "size": 96100
+  },
+  "lcpFinal": {
+    "t": 7712,
+    "tag": "IMG",
+    "id": "smv-al-8745436",
+    "cls": "smv-cursor-zoom-in",
+    "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=400&h=0",
+    "size": 96100
+  },
+  "erroresJs": 1,
+  "ejemploErroresJs": [
+    "hj is not defined"
+  ],
+  "m": {
+    "lcp": [
+      {
+        "t": 3560,
+        "tag": "P",
+        "id": "",
+        "cls": "only-mobile-hotsale preheader-bold",
+        "url": "",
+        "size": 4250
+      },
+      {
+        "t": 3652,
+        "tag": "SPAN",
+        "id": "js-original_price",
+        "cls": "col-xs-12 font-title font-title--product",
+        "url": "",
+        "size": 5796
+      },
+      {
+        "t": 4012,
+        "tag": "A",
+        "id": "",
+        "cls": "preheader-events-expotronika",
+        "url": "ecommerce/home/alkosto/visuales/2026/septiembre/preheader/ver-mob.webp",
+        "size": 14832
+      },
+      {
+        "t": 7712,
+        "tag": "IMG",
+        "id": "smv-al-8745436",
+        "cls": "smv-cursor-zoom-in",
+        "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=400&h=0",
+        "size": 96100
+      }
+    ],
+    "et": [],
+    "listo": 7641
+  },
+  "fcp": 3560,
+  "dcl": 8296,
+  "ttfb": 214,
+  "red": {
+    "primeraFoto": [
+      6808,
+      7292
+    ],
+    "sirvJs": [
+      255,
+      5927
+    ],
+    "sirvView": [
+      6087,
+      6505
+    ],
+    "reviewsBuild": [
+      259,
+      3525
+    ]
+  },
+  "geometria": {
+    "galeria": {
+      "x": 16,
+      "y": 185,
+      "w": 380,
+      "h": 380
+    },
+    "diapositivasSirv": {
+      "x": 16,
+      "y": 185,
+      "w": 380,
+      "h": 310
+    },
+    "fotoSirv": {
+      "x": 51,
+      "y": 185,
+      "w": 310,
+      "h": 310
+    },
+    "fotoFija": null
+  },
+  "reviewsRenderizado": true,
+  "galeriaLista": true
+}

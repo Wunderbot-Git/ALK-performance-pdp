@@ -1,0 +1,34 @@
+{
+  "base": {
+    "corridas": 1,
+    "validas": 1,
+    "excluidas": [],
+    "fotoVisible": {
+      "mediana": 1824,
+      "min": 1824,
+      "max": 1824,
+      "valores": [
+        1824
+      ]
+    },
+    "fcpMediana": 540,
+    "dclMediana": 1082,
+    "reviewsRenderizado": "1/1"
+  },
+  "imagen": {
+    "corridas": 1,
+    "validas": 1,
+    "excluidas": [],
+    "fotoVisible": {
+      "mediana": 680,
+      "min": 680,
+      "max": 680,
+      "valores": [
+        680
+      ]
+    },
+    "fcpMediana": 608,
+    "dclMediana": 1182,
+    "reviewsRenderizado": "1/1"
+  }
+}

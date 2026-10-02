@@ -1,0 +1,83 @@
+{
+  "base": {
+    "corridas": 5,
+    "validas": 5,
+    "excluidas": [],
+    "fotoVisible": {
+      "mediana": 6452,
+      "min": 6196,
+      "max": 9758,
+      "valores": [
+        6452,
+        6196,
+        8004,
+        6344,
+        9758
+      ]
+    },
+    "fcpMediana": 3564,
+    "dclMediana": 9521,
+    "reviewsRenderizado": "5/5"
+  },
+  "reviews": {
+    "corridas": 5,
+    "validas": 4,
+    "excluidas": [
+      "reviews-2"
+    ],
+    "fotoVisible": {
+      "mediana": 5990,
+      "min": 5580,
+      "max": 6880,
+      "valores": [
+        5704,
+        6880,
+        6276,
+        5580
+      ]
+    },
+    "fcpMediana": 3096,
+    "dclMediana": 10912,
+    "reviewsRenderizado": "5/5"
+  },
+  "imagen": {
+    "corridas": 5,
+    "validas": 5,
+    "excluidas": [],
+    "fotoVisible": {
+      "mediana": 3488,
+      "min": 3224,
+      "max": 3784,
+      "valores": [
+        3224,
+        3784,
+        3488,
+        3660,
+        3456
+      ]
+    },
+    "fcpMediana": 3416,
+    "dclMediana": 8808,
+    "reviewsRenderizado": "5/5"
+  },
+  "ambos": {
+    "corridas": 5,
+    "validas": 5,
+    "excluidas": [],
+    "fotoVisible": {
+      "mediana": 3168,
+      "min": 2916,
+      "max": 3268,
+      "valores": [
+        3220,
+        2916,
+        3168,
+        3268,
+        3004
+      ]
+    },
+    "fcpMediana": 3076,
+    "dclMediana": 9707,
+    "reviewsRenderizado": "5/5"
+  }
+}

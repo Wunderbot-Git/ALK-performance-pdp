@@ -1,0 +1,107 @@
+{
+  "etiqueta": "escritorio-base-1",
+  "variante": "base",
+  "repeticion": 1,
+  "perfil": "escritorio",
+  "url": "https://www.alkosto.com/celular-oppo-a6-256gb-4g-azul/p/6932169397902",
+  "fecha": "2026-10-02T15:22:25.169Z",
+  "navegador": "154.0.8037.95",
+  "errorNavegacion": null,
+  "transformaciones": [],
+  "fotoVisible": 1824,
+  "fotoFijaPintada": null,
+  "fotoComoLcp": {
+    "t": 1824,
+    "tag": "IMG",
+    "id": "smv-al-9427170",
+    "cls": "smv-cursor-zoom-in",
+    "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=700&h=0",
+    "size": 229193
+  },
+  "lcpFinal": {
+    "t": 1824,
+    "tag": "IMG",
+    "id": "smv-al-9427170",
+    "cls": "smv-cursor-zoom-in",
+    "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=700&h=0",
+    "size": 229193
+  },
+  "erroresJs": 1,
+  "ejemploErroresJs": [
+    "hj is not defined"
+  ],
+  "m": {
+    "lcp": [
+      {
+        "t": 540,
+        "tag": "IMG",
+        "id": "",
+        "cls": "img-responsive",
+        "url": "MzdkMGVjZGRmMDE0NmJjNzI5NTI3OWE2ODM0MzU1MzZiZWJkZjAzNzY3ZDg1Mjk3MTZiNw",
+        "size": 16575
+      },
+      {
+        "t": 624,
+        "tag": "A",
+        "id": "",
+        "cls": "preheader-events-expotronika",
+        "url": "commerce/home/alkosto/visuales/2026/septiembre/preheader/ver-desk.webp",
+        "size": 49140
+      },
+      {
+        "t": 1824,
+        "tag": "IMG",
+        "id": "smv-al-9427170",
+        "cls": "smv-cursor-zoom-in",
+        "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=700&h=0",
+        "size": 229193
+      }
+    ],
+    "et": [],
+    "listo": 1683
+  },
+  "fcp": 540,
+  "dcl": 1082,
+  "ttfb": 105,
+  "red": {
+    "primeraFoto": [
+      113,
+      472
+    ],
+    "sirvJs": [
+      113,
+      620
+    ],
+    "sirvView": [
+      902,
+      1179
+    ],
+    "reviewsBuild": [
+      114,
+      744
+    ]
+  },
+  "geometria": {
+    "galeria": {
+      "x": 83,
+      "y": 374,
+      "w": 756,
+      "h": 756
+    },
+    "diapositivasSirv": {
+      "x": 178,
+      "y": 374,
+      "w": 661,
+      "h": 756
+    },
+    "fotoSirv": {
+      "x": 178,
+      "y": 421,
+      "w": 661,
+      "h": 661
+    },
+    "fotoFija": null
+  },
+  "reviewsRenderizado": true,
+  "galeriaLista": true
+}

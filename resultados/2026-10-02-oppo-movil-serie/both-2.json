@@ -1,0 +1,86 @@
+{
+  "label": "both-2",
+  "variant": "both",
+  "repeat": 2,
+  "navError": null,
+  "transform": [
+    "reviews build.js defer: ok",
+    "ReviewsWidget init on DCL: ok",
+    "rich-snippet defer: ok",
+    "richSnippet init on DCL: ok",
+    "mobile preload -> w=400: ok",
+    "static hero img: ok",
+    "hide skeleton while hero shows: ok"
+  ],
+  "lcpFinal": {
+    "t": 2916,
+    "tag": "IMG",
+    "id": "proto-hero",
+    "cls": "",
+    "url": "bp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=400&h=0",
+    "size": 144400
+  },
+  "productLcp": {
+    "t": 2916,
+    "tag": "IMG",
+    "id": "proto-hero",
+    "cls": "",
+    "url": "bp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=400&h=0",
+    "size": 144400
+  },
+  "heroPaint": 2916,
+  "productVisible": 2916,
+  "consoleErrors": 1,
+  "consoleErrorSample": [
+    "hj is not defined"
+  ],
+  "p": {
+    "lcp": [
+      {
+        "t": 2828,
+        "tag": "P",
+        "id": "",
+        "cls": "only-mobile-hotsale preheader-bold",
+        "url": "",
+        "size": 4250
+      },
+      {
+        "t": 2916,
+        "tag": "IMG",
+        "id": "proto-hero",
+        "cls": "",
+        "url": "bp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=400&h=0",
+        "size": 144400
+      }
+    ],
+    "et": [
+      {
+        "id": "proto-hero",
+        "t": 2916
+      }
+    ],
+    "ready": 4750
+  },
+  "fcp": 2828,
+  "dcl": 9202,
+  "ttfb": 137,
+  "img400": [
+    178,
+    961
+  ],
+  "sirvJs": [
+    179,
+    3114
+  ],
+  "sirvView": [
+    3200,
+    3969
+  ],
+  "reviewsBuild": [
+    181,
+    8957
+  ],
+  "reviewsRendered": true,
+  "galleryReady": true,
+  "sirvImgs": 10
+}

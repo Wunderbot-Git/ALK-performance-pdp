@@ -1,0 +1,113 @@
+{
+  "etiqueta": "escritorio-imagen-1",
+  "variante": "imagen",
+  "repeticion": 1,
+  "perfil": "escritorio",
+  "url": "https://www.alkosto.com/celular-oppo-a6-256gb-4g-azul/p/6932169397902",
+  "fecha": "2026-10-02T15:22:45.936Z",
+  "navegador": "154.0.8037.95",
+  "errorNavegacion": null,
+  "transformaciones": [
+    "preload móvil -> w=400: ok",
+    "foto fija en el HTML: ok",
+    "CSS de relevo foto -> Sirv: ok"
+  ],
+  "fotoVisible": 680,
+  "fotoFijaPintada": 680,
+  "fotoComoLcp": {
+    "t": 680,
+    "tag": "IMG",
+    "id": "pdp-hero",
+    "cls": "",
+    "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=700&h=0",
+    "size": 255201
+  },
+  "lcpFinal": {
+    "t": 680,
+    "tag": "IMG",
+    "id": "pdp-hero",
+    "cls": "",
+    "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=700&h=0",
+    "size": 255201
+  },
+  "erroresJs": 1,
+  "ejemploErroresJs": [
+    "hj is not defined"
+  ],
+  "m": {
+    "lcp": [
+      {
+        "t": 608,
+        "tag": "IMG",
+        "id": "",
+        "cls": "img-responsive",
+        "url": "MzdkMGVjZGRmMDE0NmJjNzI5NTI3OWE2ODM0MzU1MzZiZWJkZjAzNzY3ZDg1Mjk3MTZiNw",
+        "size": 16575
+      },
+      {
+        "t": 680,
+        "tag": "IMG",
+        "id": "pdp-hero",
+        "cls": "",
+        "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=700&h=0",
+        "size": 255201
+      }
+    ],
+    "et": [
+      {
+        "id": "pdp-hero",
+        "t": 680
+      }
+    ],
+    "listo": 1798
+  },
+  "fcp": 608,
+  "dcl": 1182,
+  "ttfb": 197,
+  "red": {
+    "primeraFoto": [
+      205,
+      631
+    ],
+    "sirvJs": [
+      205,
+      767
+    ],
+    "sirvView": [
+      1022,
+      1375
+    ],
+    "reviewsBuild": [
+      206,
+      955
+    ]
+  },
+  "geometria": {
+    "galeria": {
+      "x": 83,
+      "y": 374,
+      "w": 756,
+      "h": 756
+    },
+    "diapositivasSirv": {
+      "x": 178,
+      "y": 374,
+      "w": 661,
+      "h": 756
+    },
+    "fotoSirv": {
+      "x": 178,
+      "y": 421,
+      "w": 661,
+      "h": 661
+    },
+    "fotoFija": {
+      "x": 83,
+      "y": 374,
+      "w": 756,
+      "h": 756
+    }
+  },
+  "reviewsRenderizado": true,
+  "galeriaLista": true
+}

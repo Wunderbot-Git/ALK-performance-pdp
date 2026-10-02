@@ -1,0 +1,94 @@
+{
+  "label": "reviews-5",
+  "variant": "reviews",
+  "repeat": 5,
+  "navError": null,
+  "transform": [
+    "reviews build.js defer: ok",
+    "ReviewsWidget init on DCL: ok",
+    "rich-snippet defer: ok",
+    "richSnippet init on DCL: ok"
+  ],
+  "lcpFinal": {
+    "t": 5580,
+    "tag": "IMG",
+    "id": "smv-al-3292898",
+    "cls": "smv-cursor-zoom-in",
+    "url": "bp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=400&h=0",
+    "size": 96100
+  },
+  "productLcp": {
+    "t": 5580,
+    "tag": "IMG",
+    "id": "smv-al-3292898",
+    "cls": "smv-cursor-zoom-in",
+    "url": "bp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=400&h=0",
+    "size": 96100
+  },
+  "heroPaint": null,
+  "productVisible": 5580,
+  "consoleErrors": 1,
+  "consoleErrorSample": [
+    "hj is not defined"
+  ],
+  "p": {
+    "lcp": [
+      {
+        "t": 3248,
+        "tag": "P",
+        "id": "",
+        "cls": "only-mobile-hotsale preheader-bold",
+        "url": "",
+        "size": 4250
+      },
+      {
+        "t": 3348,
+        "tag": "SPAN",
+        "id": "js-original_price",
+        "cls": "col-xs-12 font-title font-title--product",
+        "url": "",
+        "size": 5796
+      },
+      {
+        "t": 3664,
+        "tag": "A",
+        "id": "",
+        "cls": "preheader-events-expotronika",
+        "url": "home/alkosto/visuales/2026/septiembre/preheader/ver-mob.webp",
+        "size": 14832
+      },
+      {
+        "t": 5580,
+        "tag": "IMG",
+        "id": "smv-al-3292898",
+        "cls": "smv-cursor-zoom-in",
+        "url": "bp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=400&h=0",
+        "size": 96100
+      }
+    ],
+    "et": [],
+    "ready": 5509
+  },
+  "fcp": 3248,
+  "dcl": 10912,
+  "ttfb": 206,
+  "img400": [
+    4422,
+    5148
+  ],
+  "sirvJs": [
+    247,
+    3227
+  ],
+  "sirvView": [
+    3493,
+    4031
+  ],
+  "reviewsBuild": [
+    251,
+    10653
+  ],
+  "reviewsRendered": true,
+  "galleryReady": true,
+  "sirvImgs": 10
+}

@@ -1,0 +1,68 @@
+{
+  "label": "reviews-2",
+  "variant": "reviews",
+  "repeat": 2,
+  "navError": null,
+  "transform": [
+    "reviews build.js defer: ok",
+    "ReviewsWidget init on DCL: ok",
+    "rich-snippet defer: ok",
+    "richSnippet init on DCL: ok"
+  ],
+  "lcpFinal": {
+    "t": 3472,
+    "tag": "A",
+    "id": "",
+    "cls": "preheader-events-expotronika",
+    "url": "home/alkosto/visuales/2026/septiembre/preheader/ver-mob.webp",
+    "size": 14832
+  },
+  "productLcp": null,
+  "heroPaint": null,
+  "productVisible": null,
+  "consoleErrors": 1,
+  "consoleErrorSample": [
+    "hj is not defined"
+  ],
+  "p": {
+    "lcp": [
+      {
+        "t": 3056,
+        "tag": "P",
+        "id": "",
+        "cls": "only-mobile-hotsale preheader-bold",
+        "url": "",
+        "size": 4250
+      },
+      {
+        "t": 3472,
+        "tag": "A",
+        "id": "",
+        "cls": "preheader-events-expotronika",
+        "url": "home/alkosto/visuales/2026/septiembre/preheader/ver-mob.webp",
+        "size": 14832
+      }
+    ],
+    "et": [],
+    "ready": null
+  },
+  "fcp": 3056,
+  "dcl": 35234,
+  "ttfb": 99,
+  "img400": null,
+  "sirvJs": [
+    137,
+    3062
+  ],
+  "sirvView": [
+    34828,
+    35284
+  ],
+  "reviewsBuild": [
+    140,
+    6145
+  ],
+  "reviewsRendered": true,
+  "galleryReady": false,
+  "sirvImgs": 1
+}
