@@ -13,7 +13,7 @@ Auditoría de scripts y LCP de las páginas de producto (PDP) de alkosto.com, co
 | **imagen** | primera foto como `<img>` en el HTML + preload alineado | **3,49 s** | 3,22–3,78 s | **−2,96 s** |
 | **ambos** | reviews + imagen | **3,17 s** | 2,92–3,27 s | **−3,28 s** |
 
-Escritorio, prueba corta (1 corrida, solo indicio): base 1,82 s → imagen 0,68 s.
+Desktop, prueba corta (1 corrida, solo indicio): base 1,82 s → imagen 0,68 s.
 
 Los valores absolutos son más bajos que en la auditoría general porque en este montaje el HTML no pasa por la red limitada. Lo que cuenta es la comparación entre variantes. Detalles y límites en [docs/02-prueba-prototipo.md](docs/02-prueba-prototipo.md).
 
@@ -44,7 +44,7 @@ Los valores absolutos son más bajos que en la auditoría general porque en este
 └── resultados/
     ├── 2026-10-02-oppo-movil-serie/   Serie principal: 4 variantes × 5 corridas
     ├── 2026-10-02-humo-movil/         Prueba corta del script actual, móvil
-    └── 2026-10-02-humo-escritorio/    Prueba corta del script actual, escritorio
+    └── 2026-10-02-humo-desktop/    Prueba corta del script actual, desktop
 ```
 
 ## Inicio rápido
@@ -58,7 +58,7 @@ node prueba-prototipo.cjs --corridas 5
 node analizar-resultados.cjs ../resultados/ultima-corrida
 ```
 
-Opciones: `--url`, `--perfil movil|escritorio`, `--variantes base,reviews,imagen,ambos`, `--corridas`, `--ventana` (segundos), `--salida`, `--chromium`. Ver [docs/02-prueba-prototipo.md](docs/02-prueba-prototipo.md).
+Opciones: `--url`, `--perfil movil|desktop`, `--variantes base,reviews,imagen,ambos`, `--corridas`, `--ventana` (segundos), `--salida`, `--chromium`. Ver [docs/02-prueba-prototipo.md](docs/02-prueba-prototipo.md).
 
 Una serie completa (4 variantes × 5 corridas) tarda unos 12 minutos.
 

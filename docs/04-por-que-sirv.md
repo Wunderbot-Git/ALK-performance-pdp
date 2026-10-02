@@ -22,9 +22,9 @@ El problema no es la entrega de la imagen. Es que **la foto principal la crea Ja
 | --- | --- | --- |
 | Antes de pedir la foto (retraso de carga) | 6,2–8,6 s | Integración: JavaScript, orden de scripts, archivo `.view` |
 | Descarga de la foto | 0,3–0,9 s | CDN de Sirv |
-| Después de descargarla, hasta mostrarla (retraso de render) | 0,4–1,0 s en móvil, 1,4–1,9 s en escritorio | Integración: armado del visor y `opacity: 0` |
+| Después de descargarla, hasta mostrarla (retraso de render) | 0,4–1,0 s en móvil, 1,4–1,9 s en desktop | Integración: armado del visor y `opacity: 0` |
 
-Valores de las corridas móviles en las que la foto fue el elemento LCP (ambas auditorías) y de todas las corridas de escritorio.
+Valores de las corridas móviles en las que la foto fue el elemento LCP (ambas auditorías) y de todas las corridas de desktop.
 
 **El CDN explica menos del 10 % del tiempo.** El resto es la cadena de JavaScript alrededor.
 

@@ -7,7 +7,7 @@ La prueba responde una pregunta concreta: **¿cuánto antes se ve la foto del pr
 Por cada corrida, `prototipo/prueba-prototipo.cjs`:
 
 1. Abre un Chrome nuevo, sin caché ni service worker.
-2. Aplica el perfil de medición (móvil o escritorio).
+2. Aplica el perfil de medición (móvil o desktop).
 3. Intercepta el documento HTML de la PDP con `page.route` de Playwright, lo modifica según la variante y lo entrega al navegador. La variante `base` pasa por el mismo camino **sin cambios**, para que todas se traten igual.
 4. Espera una ventana fija (30 s por defecto) y lee las métricas de la página.
 5. Guarda un JSON por corrida y una captura de pantalla de la primera corrida de cada variante.
@@ -20,7 +20,7 @@ Las variantes se alternan en cada ronda (base, reviews, imagen, ambos; luego rev
 | --- | --- |
 | `base` | Ninguno |
 | `reviews` | `defer` en `widget.reviews.io/polaris/build.js` y `rich-snippet/dist.js`. Las llamadas inline `new ReviewsWidget(…)` y `richSnippet(…)` se envuelven en `DOMContentLoaded`. Un script `defer` corre antes de ese evento, así que el widget sigue funcionando |
-| `imagen` | `<img id="pdp-hero" fetchpriority="high">` con la primera foto, como hermano de `#sirv-container` dentro de `.image-gallery`, con la misma URL que Sirv pide después (`w=400` en móvil, `w=700` en escritorio). Preload móvil cambiado de `w=800&h=0&q=60` a `w=400&h=0`. CSS: sin skeleton mientras se ve la foto; la foto se oculta cuando la galería recibe `is-ready` |
+| `imagen` | `<img id="pdp-hero" fetchpriority="high">` con la primera foto, como hermano de `#sirv-container` dentro de `.image-gallery`, con la misma URL que Sirv pide después (`w=400` en móvil, `w=700` en desktop). Preload móvil cambiado de `w=800&h=0&q=60` a `w=400&h=0`. CSS: sin skeleton mientras se ve la foto; la foto se oculta cuando la galería recibe `is-ready` |
 | `ambos` | `reviews` + `imagen` |
 
 Si un patrón no aparece en el HTML (por ejemplo, porque cambió la plantilla), la consola muestra `advertencias: [... NO APLICADO]` y el analizador excluye esa corrida.
@@ -47,7 +47,7 @@ En la PDP actual, la galería pasa de `opacity: 0` a `1`. Chrome a veces no cuen
 | Perfil | Viewport | CPU | Red |
 | --- | --- | --- | --- |
 | `movil` | 412×823, DPR 1,75, táctil, UA Android | 4× más lenta | 1,6 Mbit/s bajada, 0,75 Mbit/s subida, 150 ms de latencia |
-| `escritorio` | 1365×768, DPR 1 | sin limitación | sin limitación |
+| `desktop` | 1365×768, DPR 1 | sin limitación | sin limitación |
 
 ## Cómo correrla
 
@@ -61,8 +61,8 @@ node prueba-prototipo.cjs
 # Solo base contra imagen, 3 corridas
 node prueba-prototipo.cjs --corridas 3 --variantes base,imagen
 
-# Escritorio
-node prueba-prototipo.cjs --perfil escritorio --ventana 20
+# Desktop
+node prueba-prototipo.cjs --perfil desktop --ventana 20
 
 # Otra PDP o un ambiente de staging
 node prueba-prototipo.cjs --url https://www.alkosto.com/computador-portatil-dell-essential-156-pulgadas-9kp97/p/884116673774 --salida ../resultados/dell-movil
@@ -74,7 +74,7 @@ node analizar-resultados.cjs ../resultados/ultima-corrida
 | Opción | Por defecto | Descripción |
 | --- | --- | --- |
 | `--url` | PDP de OPPO A6 | URL de la PDP; tiene que contener `/p/<EAN>` |
-| `--perfil` | `movil` | `movil` o `escritorio` |
+| `--perfil` | `movil` | `movil` o `desktop` |
 | `--variantes` | `base,reviews,imagen,ambos` | Lista separada por comas |
 | `--corridas` | `5` | Corridas por variante |
 | `--ventana` | `30` | Segundos de observación por corrida |
@@ -92,14 +92,14 @@ Serie principal (`resultados/2026-10-02-oppo-movil-serie`, Chrome 154, OPPO, mó
 | imagen | 3,49 s | 3,22–3,78 s | −2,96 s | 3,42 s | 5/5 |
 | ambos | 3,17 s | 2,92–3,27 s | −3,28 s | 3,08 s | 5/5 |
 
-Esta serie se corrió con una versión anterior del script (`script-usado-v0.cjs` en la misma carpeta). Los cambios de la versión actual: nombres en español, perfil de escritorio, geometría, y la foto fija se oculta cuando la galería está lista. Eso último ocurre después de que la foto ya es visible y no cambia la métrica.
+Esta serie se corrió con una versión anterior del script (`script-usado-v0.cjs` en la misma carpeta). Los cambios de la versión actual: nombres en español, perfil de desktop, geometría, y la foto fija se oculta cuando la galería está lista. Eso último ocurre después de que la foto ya es visible y no cambia la métrica.
 
 Prueba corta con el script actual (1 corrida cada una, solo indicio):
 
 | Perfil | base | imagen |
 | --- | --- | --- |
 | móvil | 7,71 s | 3,80 s |
-| escritorio | 1,82 s | 0,68 s |
+| desktop | 1,82 s | 0,68 s |
 
 ### Cómo leerlos
 

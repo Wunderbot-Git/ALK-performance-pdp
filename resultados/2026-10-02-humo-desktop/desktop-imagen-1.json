@@ -1,30 +1,34 @@
 {
-  "etiqueta": "escritorio-base-1",
-  "variante": "base",
+  "etiqueta": "desktop-imagen-1",
+  "variante": "imagen",
   "repeticion": 1,
-  "perfil": "escritorio",
+  "perfil": "desktop",
   "url": "https://www.alkosto.com/celular-oppo-a6-256gb-4g-azul/p/6932169397902",
-  "fecha": "2026-10-02T15:22:25.169Z",
+  "fecha": "2026-10-02T15:22:45.936Z",
   "navegador": "154.0.8037.95",
   "errorNavegacion": null,
-  "transformaciones": [],
-  "fotoVisible": 1824,
-  "fotoFijaPintada": null,
+  "transformaciones": [
+    "preload móvil -> w=400: ok",
+    "foto fija en el HTML: ok",
+    "CSS de relevo foto -> Sirv: ok"
+  ],
+  "fotoVisible": 680,
+  "fotoFijaPintada": 680,
   "fotoComoLcp": {
-    "t": 1824,
+    "t": 680,
     "tag": "IMG",
-    "id": "smv-al-9427170",
-    "cls": "smv-cursor-zoom-in",
+    "id": "pdp-hero",
+    "cls": "",
     "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=700&h=0",
-    "size": 229193
+    "size": 255201
   },
   "lcpFinal": {
-    "t": 1824,
+    "t": 680,
     "tag": "IMG",
-    "id": "smv-al-9427170",
-    "cls": "smv-cursor-zoom-in",
+    "id": "pdp-hero",
+    "cls": "",
     "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=700&h=0",
-    "size": 229193
+    "size": 255201
   },
   "erroresJs": 1,
   "ejemploErroresJs": [
@@ -33,7 +37,7 @@
   "m": {
     "lcp": [
       {
-        "t": 540,
+        "t": 608,
         "tag": "IMG",
         "id": "",
         "cls": "img-responsive",
@@ -41,44 +45,41 @@
         "size": 16575
       },
       {
-        "t": 624,
-        "tag": "A",
-        "id": "",
-        "cls": "preheader-events-expotronika",
-        "url": "commerce/home/alkosto/visuales/2026/septiembre/preheader/ver-desk.webp",
-        "size": 49140
-      },
-      {
-        "t": 1824,
+        "t": 680,
         "tag": "IMG",
-        "id": "smv-al-9427170",
-        "cls": "smv-cursor-zoom-in",
+        "id": "pdp-hero",
+        "cls": "",
         "url": "902-001.webp/celular-oppo-a6-256gb-4g-azul?scale.option=fill&w=700&h=0",
-        "size": 229193
+        "size": 255201
       }
     ],
-    "et": [],
-    "listo": 1683
+    "et": [
+      {
+        "id": "pdp-hero",
+        "t": 680
+      }
+    ],
+    "listo": 1798
   },
-  "fcp": 540,
-  "dcl": 1082,
-  "ttfb": 105,
+  "fcp": 608,
+  "dcl": 1182,
+  "ttfb": 197,
   "red": {
     "primeraFoto": [
-      113,
-      472
+      205,
+      631
     ],
     "sirvJs": [
-      113,
-      620
+      205,
+      767
     ],
     "sirvView": [
-      902,
-      1179
+      1022,
+      1375
     ],
     "reviewsBuild": [
-      114,
-      744
+      206,
+      955
     ]
   },
   "geometria": {
@@ -100,7 +101,12 @@
       "w": 661,
       "h": 661
     },
-    "fotoFija": null
+    "fotoFija": {
+      "x": 83,
+      "y": 374,
+      "w": 756,
+      "h": 756
+    }
   },
   "reviewsRenderizado": true,
   "galeriaLista": true

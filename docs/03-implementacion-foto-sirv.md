@@ -2,7 +2,7 @@
 
 **Objetivo:** que la primera foto del producto sea visible sin esperar a JavaScript, y que Sirv Media Viewer tome el relevo después sin salto visual y sin descargar la imagen dos veces.
 
-**Efecto medido en el prototipo:** móvil 6,45 s → 3,49 s (mediana de 5 corridas); escritorio 1,82 s → 0,68 s (1 corrida, indicio).
+**Efecto medido en el prototipo:** móvil 6,45 s → 3,49 s (mediana de 5 corridas); desktop 1,82 s → 0,68 s (1 corrida, indicio).
 
 Este patrón es el que recomienda la propia Sirv: una imagen de marcador (*placeholder*) que se pide apenas carga la página, antes de que cargue `sirv.js`, con el visor posicionado encima ([Sirv: Smart Gallery, placeholder image](https://sirv.com/help/articles/smart-gallery/)).
 
@@ -73,7 +73,7 @@ Reglas:
 ```
 
 - Móvil: cambiar `w=800&h=0&q=60` por `w=400&h=0`.
-- Escritorio: hoy el `href` usa otra ruta (`/products/{EAN}-001.webp/…`, sin la carpeta `/{EAN}/`), aunque el `imagesrcset` es correcto. Usar la misma URL que el `<img>`.
+- Desktop: hoy el `href` usa otra ruta (`/products/{EAN}-001.webp/…`, sin la carpeta `/{EAN}/`), aunque el `imagesrcset` es correcto. Usar la misma URL que el `<img>`.
 - El `media` del preload y el del `<source>` tienen que coincidir.
 
 ## Paso 3 · CSS de relevo
@@ -116,7 +116,7 @@ De dónde salen los valores (medidos el 02.10.2026, ver `geometria` en los JSON 
 | Perfil | Galería | Diapositiva de Sirv | Foto de Sirv |
 | --- | --- | --- | --- |
 | Móvil (viewport 412 px) | 380×380 | 380×310 desde arriba; 70 px de puntos debajo | 310×310, centrada |
-| Escritorio (viewport 1365 px) | 756×756 | desde x+95, 661 de ancho, alto completo | 661×661, centrada vertical |
+| Desktop (viewport 1365 px) | 756×756 | desde x+95, 661 de ancho, alto completo | 661×661, centrada vertical |
 
 Con `object-fit: contain`, la foto fija queda exactamente donde Sirv pinta la suya. En el prototipo la foto fija ocupaba toda la galería (380×380 en móvil), lo que habría causado un salto de 380 a 310 px en el relevo. Hay que verificar los valores en tablet (viewport 768–1023 px), que no se midió.
 
@@ -159,7 +159,7 @@ Con la foto fija, estos pasos ya no influyen en el LCP, pero sí en cuándo la g
 
 ## Lista de control (QA)
 
-- [ ] Móvil, tablet (768 y 1024 px) y escritorio: la foto fija y la foto de Sirv quedan en el mismo lugar, sin salto. CLS ≤ 0,1 en el panel Performance.
+- [ ] Móvil, tablet (768 y 1024 px) y desktop: la foto fija y la foto de Sirv quedan en el mismo lugar, sin salto. CLS ≤ 0,1 en el panel Performance.
 - [ ] En Network: la primera foto se descarga **una sola vez** (misma URL en `<img>`, preload y Sirv).
 - [ ] Deslizar, miniaturas, zoom, pantalla completa, video y hotspots funcionan igual que antes.
 - [ ] Producto con una sola imagen, con video entre los primeros ítems y sin imagen.

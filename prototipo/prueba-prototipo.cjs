@@ -25,7 +25,7 @@
  * Uso
  *   node prueba-prototipo.cjs                         # OPPO, móvil, 5 corridas, 4 variantes
  *   node prueba-prototipo.cjs --corridas 3 --variantes base,imagen
- *   node prueba-prototipo.cjs --perfil escritorio
+ *   node prueba-prototipo.cjs --perfil desktop
  *   node prueba-prototipo.cjs --url https://www.alkosto.com/.../p/884116673774 --salida ../resultados/dell
  *
  * Requisitos: Node 18+, `npm install` en esta carpeta y Google Chrome instalado
@@ -45,7 +45,7 @@ const CONFIG = {
   url: args.url || 'https://www.alkosto.com/celular-oppo-a6-256gb-4g-azul/p/6932169397902',
   corridas: Number(args.corridas || 5),
   ventanaMs: Number(args.ventana || 30) * 1000,
-  perfil: args.perfil || 'movil',
+  perfil: ({ escritorio: 'desktop' })[args.perfil] || args.perfil || 'movil', // 'escritorio' se acepta como alias
   variantes: (args.variantes || 'base,reviews,imagen,ambos').split(',').map(v => v.trim()),
   salida: path.resolve(args.salida || path.join(__dirname, '..', 'resultados', 'ultima-corrida')),
   chromium: Boolean(args.chromium),
@@ -55,7 +55,7 @@ const VARIANTES_VALIDAS = ['base', 'reviews', 'imagen', 'ambos'];
 for (const v of CONFIG.variantes) {
   if (!VARIANTES_VALIDAS.includes(v)) salirConError(`Variante desconocida: "${v}". Válidas: ${VARIANTES_VALIDAS.join(', ')}`);
 }
-if (!['movil', 'escritorio'].includes(CONFIG.perfil)) salirConError('--perfil debe ser "movil" o "escritorio"');
+if (!['movil', 'desktop'].includes(CONFIG.perfil)) salirConError('--perfil debe ser "movil" o "desktop"');
 
 const EAN = (CONFIG.url.match(/\/p\/(\d+)/) || [])[1];
 if (!EAN) salirConError('No se encontró el código del producto (/p/<EAN>) en la URL.');
@@ -72,7 +72,7 @@ const PERFILES = {
     red: { offline: false, latency: 150, downloadThroughput: 1600000 / 8, uploadThroughput: 750000 / 8, connectionType: 'cellular4g' },
     anchoImagen: 400, // Ancho que Sirv pide para la primera foto en este viewport (medido el 02.10.2026)
   },
-  escritorio: {
+  desktop: {
     contexto: { viewport: { width: 1365, height: 768 }, deviceScaleFactor: 1 },
     cpu: 1,
     red: null,
@@ -119,8 +119,8 @@ function transformar(html, variante) {
     }
     const base = m[1].replace(/w=\d+&h=0(&q=\d+)?/, '');
     const srcMovil = `${base}w=400&h=0`;
-    const srcEscritorio = `${base}w=700&h=0`;
-    const src = PERFIL.anchoImagen === 400 ? srcMovil : srcEscritorio;
+    const srcDesktop = `${base}w=700&h=0`;
+    const src = PERFIL.anchoImagen === 400 ? srcMovil : srcDesktop;
 
     reemplazar(m[1], srcMovil, 'preload móvil -> w=400');
     // Foto fija en el HTML. Va como hermano de #sirv-container (no adentro), porque Alkosto

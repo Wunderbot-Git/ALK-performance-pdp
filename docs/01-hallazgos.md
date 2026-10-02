@@ -6,7 +6,7 @@ PDP analizadas (2 de octubre de 2026):
 - Dell Essential 15,6″: `https://www.alkosto.com/computador-portatil-dell-essential-156-pulgadas-9kp97/p/884116673774`
 - Whirlpool 21 kg: `https://www.alkosto.com/lavadora-whirlpool-carga-frontal-21-kilos-7mwfw5605mc-gris/p/883049644622`
 
-Perfiles: móvil (412×823, DPR 1,75, 4G 1,6 Mbit/s y 150 ms, CPU 4× más lenta) y escritorio (sin limitación). Caché fría, banner de cookies sin aceptar, sin clics.
+Perfiles: móvil (412×823, DPR 1,75, 4G 1,6 Mbit/s y 150 ms, CPU 4× más lenta) y desktop (sin limitación). Caché fría, banner de cookies sin aceptar, sin clics.
 
 ## 1. La foto depende de una cadena de JavaScript
 
@@ -36,30 +36,30 @@ La foto aparece recién al final de esta cadena (OPPO, móvil):
 | Sirv pide la foto (`w=400`) | 9,70–10,97 s |
 | `is-ready`, la galería pasa de `opacity: 0` a `1` | tras la foto |
 
-En escritorio la foto ya está descargada a los 0,4–0,5 s (gracias al preload), pero se pinta a los 1,9–2,4 s: 1,4–1,9 s de espera de render por la misma cadena.
+En desktop la foto ya está descargada a los 0,4–0,5 s (gracias al preload), pero se pinta a los 1,9–2,4 s: 1,4–1,9 s de espera de render por la misma cadena.
 
 ## 2. Mediciones
 
 | PDP | Perfil | LCP corrida 1 | LCP corrida 2 | Elemento LCP | Foto cargada |
 | --- | --- | --- | --- | --- | --- |
 | OPPO A6 | móvil | 5,72 s | 5,01 s | banner del preheader (ver punto 5) | 10,98 / 10,97 s |
-| OPPO A6 | escritorio | 2,40 s | 2,20 s | foto | 0,51 s |
+| OPPO A6 | desktop | 2,40 s | 2,20 s | foto | 0,51 s |
 | Dell 15,6″ | móvil | 9,15 s | 8,83 s | H1 movido por JS (ver punto 6) | 10,38 / 10,21 s |
-| Dell 15,6″ | escritorio | 1,90 s | 1,90 s | foto | – |
+| Dell 15,6″ | desktop | 1,90 s | 1,90 s | foto | – |
 | Whirlpool | móvil | 5,50 s | 10,10 s | banner / foto | 10,93 / 9,39 s |
-| Whirlpool | escritorio | 17,08 s | 2,01 s | foto (corrida 1: CSS de jsDelivr colgado 15,4 s) | – |
+| Whirlpool | desktop | 17,08 s | 2,01 s | foto (corrida 1: CSS de jsDelivr colgado 15,4 s) | – |
 
-La segunda auditoría independiente (Playwright, Chrome 154) midió el LCP con la foto como elemento final en las 12 corridas base: móvil 9,58 s (OPPO), 7,87 s (Dell) y 7,96 s (Whirlpool); escritorio 3,88 s, 1,92 s y 2,01 s (medianas de 2 corridas).
+La segunda auditoría independiente (Playwright, Chrome 154) midió el LCP con la foto como elemento final en las 12 corridas base: móvil 9,58 s (OPPO), 7,87 s (Dell) y 7,96 s (Whirlpool); desktop 3,88 s, 1,92 s y 2,01 s (medianas de 2 corridas).
 
 ### Desglose del LCP (ms)
 
 | Corrida | Elemento | TTFB | Retraso de carga | Duración de carga | Retraso de render | LCP |
 | --- | --- | --- | --- | --- | --- | --- |
 | OPPO · móvil · 1 | banner | 84 | 4.010 | 892 | 736 | 5.722 |
-| OPPO · escritorio · 2 | foto | 58 | 6 | 380 | 1.755 | 2.199 |
-| Dell · escritorio · 2 | foto | 69 | 6 | 325 | 1.496 | 1.896 |
+| OPPO · desktop · 2 | foto | 58 | 6 | 380 | 1.755 | 2.199 |
+| Dell · desktop · 2 | foto | 69 | 6 | 325 | 1.496 | 1.896 |
 | Whirlpool · móvil · 2 | foto | 70 | 8.554 | 763 | 709 | 10.096 |
-| Whirlpool · escritorio · 2 | foto | 151 | 15 | 313 | 1.534 | 2.012 |
+| Whirlpool · desktop · 2 | foto | 151 | 15 | 313 | 1.534 | 2.012 |
 
 La duración de la descarga de la imagen nunca supera 1 segundo. El tiempo se pierde antes (la foto se pide tarde) y después (la foto ya está, pero la galería no se muestra).
 
@@ -87,7 +87,7 @@ Otros detalles: `algoliasearch@5.20.0` se carga dos veces (UMD completo y lite);
 ## 4. Preload desalineado
 
 - Móvil: el preload pide `…&w=800&h=0&q=60` (listo a los 1,8 s), pero Sirv pide `…&w=400&h=0`. Son recursos distintos: el preload solo consume ancho de banda.
-- Escritorio: el `imagesrcset` del preload contiene la URL correcta (`w=700`), pero el `href` usa otra ruta (sin la carpeta `/{EAN}/`).
+- Desktop: el `imagesrcset` del preload contiene la URL correcta (`w=700`), pero el `href` usa otra ruta (sin la carpeta `/{EAN}/`).
 
 ## 5. Trampa de medición: el banner del preheader
 
@@ -106,7 +106,7 @@ El HTML de la PDP sale directo del origen SAP Commerce (`pragma: no-cache`, sin 
 | PDP | LCP | INP | CLS | TTFB |
 | --- | --- | --- | --- | --- |
 | OPPO, móvil | 2,49 s | 229 ms | 0,05 | – |
-| OPPO, escritorio | 2,76 s | 113 ms | 0,16 | 953 ms |
+| OPPO, desktop | 2,76 s | 113 ms | 0,16 | 953 ms |
 | Dell, móvil | 3,07 s | 166 ms | 0,02 | 849 ms |
 | Whirlpool | sin datos en CrUX | | | |
 

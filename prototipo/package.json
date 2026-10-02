@@ -5,7 +5,7 @@
   "description": "Prueba de prototipo: tiempo hasta que la foto del producto es visible en PDP de alkosto.com, con y sin cambios en el HTML.",
   "scripts": {
     "prueba": "node prueba-prototipo.cjs",
-    "prueba:escritorio": "node prueba-prototipo.cjs --perfil escritorio",
+    "prueba:desktop": "node prueba-prototipo.cjs --perfil desktop",
     "analizar": "node analizar-resultados.cjs"
   },
   "engines": {
