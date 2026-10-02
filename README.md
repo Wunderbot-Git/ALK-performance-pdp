@@ -25,7 +25,7 @@ Los valores absolutos son más bajos que en la auditoría general porque en este
 | [docs/02-prueba-prototipo.md](docs/02-prueba-prototipo.md) | Cómo funciona la prueba de prototipo, cómo correrla y cómo leer los resultados |
 | [docs/03-implementacion-foto-sirv.md](docs/03-implementacion-foto-sirv.md) | Guía concreta: primera foto en el HTML junto con Sirv, sin salto visual |
 | [docs/04-por-que-sirv.md](docs/04-por-que-sirv.md) | Por qué Sirv produce este efecto aunque su CDN de imágenes es rápido |
-| [presentacion/index.html](presentacion/index.html) | Presentación de 15 diapositivas con notas del orador. Abrir en el navegador; ← → para navegar, N para las notas |
+| [presentacion/index.html](presentacion/index.html) | Presentación ejecutiva (10 diapositivas + anexo técnico de 12) con notas del orador. Abrir en el navegador; ← → para navegar, N para las notas |
 
 ## Estructura
 
@@ -33,7 +33,10 @@ Los valores absolutos son más bajos que en la auditoría general porque en este
 .
 ├── README.md
 ├── docs/                       Documentación en español
-├── presentacion/index.html     Presentación (abrir en el navegador)
+├── presentacion/
+│   ├── index.html              Presentación (abrir en el navegador)
+│   ├── construir.py            Genera index.html desde fuente/
+│   └── fuente/                 deck.json + una diapositiva HTML por archivo
 ├── prototipo/
 │   ├── prueba-prototipo.cjs    Prueba con HTML modificado (Playwright + Chrome)
 │   ├── analizar-resultados.cjs Resumen de una serie (tabla Markdown + resumen.json)

@@ -1,0 +1,27 @@
+<section id="hallazgos" style="background:#F3F0EC;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Anexo A7 · Hallazgos</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:48px;font-weight:700;line-height:1.1;color:#2E2A28">Cuatro detalles de la plantilla suman espera</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Escritorio: cargada, no pintada</h3>
+<p style="font-size:24px;line-height:1.4">La imagen carga en 0,4–0,5 s gracias al preload. Los 1,4–1,9 s de retraso de render se van en sirv.js → JSON .view → armar la galería.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Móvil: preload desperdiciado</h3>
+<p style="font-size:24px;line-height:1.4">Se precarga w=800&amp;q=60 (lista a los 1,8 s), pero Sirv pide w=400. El parser llega a la galería recién a los 4,5 s.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Banner como fondo CSS</h3>
+<p style="font-size:24px;line-height:1.4">El preheader usa background-image en un &lt;style&gt; inline. El navegador lo pide solo cuando todo el CSS cargó: 4,1–4,5 s, con prioridad baja.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">HTML sin caché en el edge</h3>
+<p style="font-size:24px;line-height:1.4">El HTML sale directo del origen SAP Commerce (pragma: no-cache). Con caché fría, TTFB de 1,0 s; en campo, p75 de 0,85–0,95 s.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">A7</p>
+<aside>Cuatro hallazgos adicionales. Uno: en escritorio la imagen ya está, pero no se pinta hasta que Sirv arma la galería. Dos: en móvil precargamos una versión de la imagen que Sirv nunca usa. Tres: el banner del preheader es un fondo CSS, y esos se descargan tarde. Cuatro: el HTML no está en caché en el CDN, lo que cuesta casi un segundo de TTFB para usuarios reales.</aside>
+</section>

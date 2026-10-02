@@ -1,0 +1,37 @@
+<section id="sirv-patron" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#1F7A42">Solución</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:52px;font-weight:700;line-height:1.15;color:#2E2A28">Es el patrón que recomienda la propia Sirv: no hace falta cambiar de proveedor</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:32px 40px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;text-transform:uppercase;letter-spacing:2px;color:#6B6560">Hoy</p>
+<p style="font-size:28px;line-height:1.35"><b>1</b> · La página llega sin la foto</p>
+<p style="font-size:28px;line-height:1.35"><b>2</b> · JavaScript arma la galería al final de la carga</p>
+<p style="font-size:28px;line-height:1.35;color:#DD171B"><b>3</b> · La foto aparece a los 8–11 s</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#F3FFF7;border:2px solid #1F7A42;border-radius:16px;padding:32px 40px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;text-transform:uppercase;letter-spacing:2px;color:#1F7A42">Propuesta</p>
+<p style="font-size:28px;line-height:1.35"><b>1</b> · La página llega con la primera foto</p>
+<p style="font-size:28px;line-height:1.35;color:#1F7A42"><b>2</b> · La foto aparece a los ~3,5 s</p>
+<p style="font-size:28px;line-height:1.35"><b>3</b> · La galería toma el relevo: deslizar, zoom, video</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #004797;padding:20px 0 0 0">
+<p style="font-size:28px;font-weight:700;color:#004797">Sin cambio de proveedor</p>
+<p style="font-size:24px;line-height:1.35">El CDN de imágenes de Sirv ya es rápido: la foto se descarga en menos de 1 s.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #004797;padding:20px 0 0 0">
+<p style="font-size:28px;font-weight:700;color:#004797">Recomendado por Sirv</p>
+<p style="font-size:24px;line-height:1.35">Sirv sugiere una imagen de marcador que se cargue antes que el visor.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:4px solid #004797;padding:20px 0 0 0">
+<p style="font-size:28px;font-weight:700;color:#004797">Más robusto</p>
+<p style="font-size:24px;line-height:1.35">Si un script falla o tarda, la foto se sigue viendo.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B6560">Fuente: Sirv Help Center, “Smart Gallery: placeholder image”; prototipo 02.10.2026. Implementación: anexo A9</p>
+<p style="position:absolute;right:128px;bottom:64px;width:120px;font-size:24px;color:#6B6560;text-align:right">8</p>
+<aside>Una pregunta natural es si el problema es Sirv. No lo es: su servicio de imágenes es rápido. Lo que cambia es el orden. Hoy la página llega sin foto y espera a que JavaScript arme la galería. Con la propuesta, la página llega con la primera foto y la galería toma el relevo después, con todas sus funciones. Es exactamente lo que la propia Sirv recomienda en su documentación, y además hace la página más robusta frente a fallas de scripts.</aside>
+</section>

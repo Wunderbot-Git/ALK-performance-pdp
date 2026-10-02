@@ -1,0 +1,35 @@
+<section id="medidas-2" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Anexo A11 · Medidas 4–5</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:48px;font-weight:700;line-height:1.1;color:#2E2A28">Medidas 4–5: requieren a Marketing y Plataforma</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;align-items:start;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:32px 40px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#EB5B25;width:56px;flex:none">4</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Revisar Varify y la carga de tags</h3>
+<p style="font-size:24px;line-height:1.35">varify.js síncrono solo con test activo; si no, async con anti-flicker corto. Unificar gtag y Ads, quitar algoliasearch duplicado, Storyly y Kevel tras interacción.</p>
+</div>
+<div style="width:380px;flex:none;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:700;line-height:1.3;color:#B14B25">Varify −1,18 s · GTM −0,99 s · 2 corridas, indicio</p>
+<p style="font-size:24px;line-height:1.3;color:#5C5C5C">Esfuerzo medio · Marketing/CRO + proveedor</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;align-items:start;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:32px 40px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#EB5B25;width:56px;flex:none">5</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Caché del HTML de PDP en el edge</h3>
+<p style="font-size:24px;line-height:1.35">Hoy el HTML sale del origen SAP Commerce (pragma: no-cache). Cachear la parte anónima en el CDN; precio, stock y carrito, del lado del cliente.</p>
+</div>
+<div style="width:380px;flex:none;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:700;line-height:1.3;color:#B14B25">TTFB de campo 0,85–0,95 s · ahorro estimado</p>
+<p style="font-size:24px;line-height:1.3;color:#5C5C5C">Esfuerzo alto · Dev + plataforma</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#E2E9F1;border-radius:16px;padding:32px 40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#004797">Después</h3>
+<p style="font-size:24px;line-height:1.35;color:#2E2A28">Banner del preheader como &lt;img fetchpriority="high"&gt; o solo texto · dividir alkosto_pdp.min.css (2,7 s en Slow 4G) en CSS crítico + resto · reemplazar relocateMainTitleForMobile() por CSS (crea un LCP intermedio tardío, sin ganancia propia).</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">A11</p>
+<aside>Cuatro: Varify y los tags de marketing. Al bloquearlos, el LCP mejoró alrededor de un segundo cada uno, pero con solo dos corridas es un indicio; para negociar con Marketing conviene medir más. Cinco: cachear el HTML en el CDN. Hoy cada visita espera casi un segundo de respuesta del servidor en el percentil 75; es un cambio estructural con más esfuerzo. Después vienen mejoras menores: el banner, el CSS grande y el título que se mueve con JavaScript.</aside>
+</section>

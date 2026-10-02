@@ -1,0 +1,55 @@
+<section id="cadena-simple" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Causa</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:52px;font-weight:700;line-height:1.15;color:#2E2A28">La galería se arma en cinco pasos encadenados: un solo elemento lento retrasa la foto completa</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:16px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:28px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#B14B25">1</p>
+<p style="font-size:28px;font-weight:700;line-height:1.2;color:#2E2A28">Llega la página</p>
+<p style="font-size:24px;line-height:1.3">Sin foto: solo un espacio reservado</p>
+<div style="flex:1"></div>
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:36px;font-weight:700;color:#2E2A28">0,1 s</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#B9B2AA;flex:none;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFEFC;border:2px solid #DD171B;border-radius:16px;padding:28px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#B14B25">2</p>
+<p style="font-size:28px;font-weight:700;line-height:1.2;color:#2E2A28">El navegador lee toda la página</p>
+<p style="font-size:24px;line-height:1.3;color:#DD171B">El widget de reseñas la frena</p>
+<div style="flex:1"></div>
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:36px;font-weight:700;color:#DD171B">hasta 7,6 s</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#B9B2AA;flex:none;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:28px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#B14B25">3</p>
+<p style="font-size:28px;font-weight:700;line-height:1.2;color:#2E2A28">Arranca el visor de la galería</p>
+<p style="font-size:24px;line-height:1.3">Solo puede empezar cuando termina la lectura</p>
+<div style="flex:1"></div>
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:36px;font-weight:700;color:#2E2A28">8,0 s</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#B9B2AA;flex:none;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:28px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#B14B25">4</p>
+<p style="font-size:28px;font-weight:700;line-height:1.2;color:#2E2A28">Pide la lista de fotos</p>
+<p style="font-size:24px;line-height:1.3">Un archivo adicional con fotos y videos</p>
+<div style="flex:1"></div>
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:36px;font-weight:700;color:#2E2A28">8,1–8,9 s</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#B9B2AA;flex:none;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:28px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;color:#B14B25">5</p>
+<p style="font-size:28px;font-weight:700;line-height:1.2;color:#2E2A28">Descarga y muestra la foto</p>
+<p style="font-size:24px;line-height:1.3">Recién aquí el cliente ve el producto</p>
+<div style="flex:1"></div>
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:36px;font-weight:700;color:#B14B25">9,7–11,0 s</p>
+</div>
+</div>
+<ul style="font-size:28px;line-height:1.4">
+<li>Ningún paso es lento por sí solo: cada uno espera al anterior.</li>
+<li>Cualquier script nuevo en la página puede retrasar la foto.</li>
+<li>En 1 de 6 corridas, un archivo externo colgado llevó la foto a 17 s.</li>
+</ul>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B6560">Fuente: auditoría de laboratorio (Chrome DevTools), OPPO A6 celular, 02.10.2026. Detalle en el anexo A1</p>
+<p style="position:absolute;right:128px;bottom:64px;width:120px;font-size:24px;color:#6B6560;text-align:right">6</p>
+<aside>¿Por qué tanta espera? Porque la foto está al final de una cadena. Primero llega la página, pero sin la foto. Luego el navegador tiene que leer toda la página, y un widget de reseñas lo frena. Recién después arranca el visor de la galería, pide la lista de fotos y finalmente descarga la foto. Cada eslabón espera al anterior; por eso cualquier elemento lento en la página termina retrasando la foto.</aside>
+</section>

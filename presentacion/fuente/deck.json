@@ -1,0 +1,72 @@
+{
+  "v": 4,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-02T13:34:00Z"
+  },
+  "lists": "css",
+  "title": "Auditoría PDP Alkosto",
+  "cover": "cover",
+  "order": [
+    "cover",
+    "resumen",
+    "situacion",
+    "problema",
+    "causa",
+    "cadena-simple",
+    "prototipo",
+    "sirv-patron",
+    "medidas",
+    "proximos-pasos",
+    "anexo",
+    "cadena",
+    "mediciones",
+    "desglose",
+    "pruebas",
+    "inventario-bloqueo",
+    "inventario-async",
+    "hallazgos",
+    "trampa",
+    "a-implementacion",
+    "medidas-1",
+    "medidas-2",
+    "metodo"
+  ],
+  "sections": {
+    "s1": {
+      "description": "Resumen ejecutivo: la recomendación en una página.",
+      "start": "cover"
+    },
+    "s2": {
+      "description": "Situación y problema: la foto del producto llega tarde y la causa es la galería, no las imágenes.",
+      "start": "situacion"
+    },
+    "s3": {
+      "description": "Solución: la primera foto en la página, probada en un prototipo, y las cinco medidas priorizadas.",
+      "start": "prototipo"
+    },
+    "s4": {
+      "description": "Próximos pasos y decisiones requeridas.",
+      "start": "proximos-pasos"
+    },
+    "s5": {
+      "description": "Anexo técnico: detalle y evidencia para el equipo de desarrollo.",
+      "start": "anexo"
+    }
+  },
+  "faces": {
+    "archivo": {
+      "family": "Archivo",
+      "href": "https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&display=swap"
+    },
+    "source-sans-3": {
+      "family": "Source Sans 3",
+      "href": "https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap"
+    },
+    "jetbrains-mono": {
+      "family": "JetBrains Mono",
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap"
+    }
+  },
+  "designSystems": []
+}

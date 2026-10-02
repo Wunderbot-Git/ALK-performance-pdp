@@ -1,0 +1,18 @@
+<section id="inventario-bloqueo" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Anexo A5 · Inventario</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:48px;font-weight:700;line-height:1.1;color:#2E2A28">Solo 1 de 49 scripts cuenta como “bloqueante”, pero cinco frenan la lectura de la página</h2>
+</div>
+<table style="font-size:24px;color:#444444;border:1px solid #E4E0DC">
+<tr style="background:#F0ECE7"><th style="width:34%">Script</th><th style="width:22%">Carga</th><th style="width:44%">Efecto medido</th></tr>
+<tr><td>reviews.io polaris/build.js + rich-snippet/dist.js</td><td style="color:#DD171B">body · síncrono</td><td>build.js termina a los 6,6–7,6 s y frena parser, DCL y Sirv. Prueba: −3,5 s en la foto</td></tr>
+<tr><td>CSS jsDelivr autocomplete-theme-classic (sin versión)</td><td style="color:#DD171B">body · antes de un script inline</td><td>El script inline espera a este CSS. 1 de 6 corridas: 15,4 s → LCP 17,1 s</td></tr>
+<tr><td>app.varify.io/varify.js (A/B testing)</td><td style="color:#DD171B">head · síncrono</td><td>Bloquea el render 0,64–3,0 s. Bloqueado: FCP igual, LCP −1,18 s (2 corridas)</td></tr>
+<tr><td>alkosto-ia.min.js (solo Dell)</td><td style="color:#DD171B">body · síncrono</td><td>1,1–2,4 s; atributos sin renderizar ({{product_id}}) y data-debug="true" en producción</td></tr>
+<tr><td>Inline var ACC={config…} (116 KB)</td><td style="color:#DD171B">head · inline</td><td>Espera al CSS (hasta 4,0 s) y luego parsea 116 KB</td></tr>
+</table>
+<p style="font-size:24px;line-height:1.35;color:#5C5C5C">Solo varify.js cuenta como “render-blocking” (1 de 49, 2 %). Los demás bloquean el parser, y eso no aparece en esa métrica.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">A5</p>
+<aside>Estos son los elementos que detienen la lectura del HTML. El más dañino es Reviews.io. El segundo es un CSS de jsDelivr sin número de versión, ubicado justo antes de un script inline: los scripts inline esperan a todo el CSS anterior, así que si ese archivo se cuelga, se cuelga toda la página. Varify es el único que la métrica clásica marca como bloqueante. En la PDP de Dell además aparece el widget de IA de Alkosto, cargado síncrono y con datos de plantilla sin reemplazar.</aside>
+</section>

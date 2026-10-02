@@ -1,0 +1,22 @@
+<section id="trampa" style="background:#F3F0EC;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Anexo A8 · Trampa de medición</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:48px;font-weight:700;line-height:1.1;color:#2E2A28">Chrome a veces mide el banner y no la foto; por eso medimos cuándo se ve la foto</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;text-transform:uppercase;color:#6B6560">Lo que reporta Chrome</p>
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#B14B25">5,0–5,7 s</p>
+<p style="font-size:28px;line-height:1.4">LCP = banner “Expotronika” (imagen de fondo CSS), en algunas corridas móviles</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFC;border:2px solid #DD171B;border-radius:16px;padding:40px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;text-transform:uppercase;color:#6B6560">Lo que ve el cliente</p>
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#DD171B">~10–11 s</p>
+<p style="font-size:28px;line-height:1.4">Recién ahí aparece la foto del producto</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4">Pasa de forma esporádica: 3 de 6 corridas en una auditoría, 1 de 5 en el prototipo, 0 de 12 en la otra. La galería está en <b>opacity: 0</b> hasta que Sirv marca <b>is-ready</b>. Por eso medimos cuándo se ve la foto, no solo el número de LCP.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">A8</p>
+<aside>Ojo con el número que reporta Chrome. En móvil, el elemento más grande que se pinta temprano es a menudo el banner del preheader, no la foto. Por eso el LCP parece de 5 segundos cuando el cliente espera 10 u 11 por la foto. Cuando arreglemos la cadena, la foto volverá a ser el elemento LCP y el número puede subir temporalmente. Conviene anticiparlo en los reportes.</aside>
+</section>

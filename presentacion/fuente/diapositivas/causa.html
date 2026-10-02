@@ -1,0 +1,35 @@
+<section id="causa" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Causa</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:52px;font-weight:700;line-height:1.15;color:#2E2A28">Las imágenes se descargan rápido: más del 90 % de la espera ocurre antes y después de la descarga</h2>
+</div>
+<p style="font-size:28px;color:#2E2A28"><b>9,6 s</b> hasta ver la foto · OPPO A6, celular</p>
+<div style="display:flex;flex-direction:row;height:72px">
+<div style="width:12px;flex:none;background:#B9B2AA"></div>
+<div style="width:1388px;flex:none;background:#DD171B"></div>
+<div style="width:107px;flex:none;background:#004797"></div>
+<div style="width:157px;flex:none;background:#EB5B25"></div>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:8px solid #B9B2AA;padding:16px 0 0 0">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;color:#2E2A28">0,1 s</p>
+<p style="font-size:24px;line-height:1.35">Respuesta del servidor</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:8px solid #DD171B;padding:16px 0 0 0">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;color:#DD171B">8,0 s</p>
+<p style="font-size:24px;line-height:1.35">Espera hasta pedir la foto: la galería todavía no existe</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:8px solid #004797;padding:16px 0 0 0">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;color:#004797">0,6 s</p>
+<p style="font-size:24px;line-height:1.35">Descarga de la foto desde el CDN de imágenes (Sirv)</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;border-top:8px solid #EB5B25;padding:16px 0 0 0">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;color:#B14B25">0,9 s</p>
+<p style="font-size:24px;line-height:1.35">Espera hasta mostrarla: armado de la galería</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.35">La descarga es menos del 7 % del tiempo. <b>Lo lento no es el proveedor de imágenes, sino cómo la página arma la galería.</b></p>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B6560">Fuente: auditoría de laboratorio (Chrome 154), OPPO A6 celular, mediana de 2 corridas; desglose del LCP</p>
+<p style="position:absolute;right:128px;bottom:64px;width:120px;font-size:24px;color:#6B6560;text-align:right">5</p>
+<aside>Descomponemos los 9,6 segundos en cuatro partes. El servidor responde rápido. La foto se descarga en 0,6 segundos: el servicio de imágenes funciona bien. Casi todo el tiempo se va en esperar: ocho segundos hasta que la página siquiera pide la foto, porque la galería todavía no existe, y casi un segundo más hasta mostrarla. Ahí está el problema.</aside>
+</section>

@@ -1,0 +1,20 @@
+<section id="desglose" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Anexo A3 · Desglose del LCP</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:48px;font-weight:700;line-height:1.1;color:#2E2A28">En todas las corridas dominan las esperas; la descarga de la foto nunca supera 1 s</h2>
+</div>
+<table style="font-size:24px;color:#444444;border:1px solid #E4E0DC">
+<tr style="background:#F0ECE7"><th style="width:24%">Corrida</th><th style="width:16%">Elemento</th><th style="width:10%;text-align:right">TTFB</th><th style="width:13%;text-align:right">Retraso de carga</th><th style="width:13%;text-align:right">Duración de carga</th><th style="width:13%;text-align:right">Retraso de render</th><th style="width:11%;text-align:right">LCP</th></tr>
+<tr><td>OPPO · móvil · L1</td><td>Banner</td><td>84</td><td style="color:#DD171B">4.010</td><td>892</td><td>736</td><td>5.722</td></tr>
+<tr><td>OPPO · escritorio · L2</td><td>Foto</td><td>58</td><td>6</td><td>380</td><td style="color:#DD171B">1.755</td><td>2.199</td></tr>
+<tr><td>Dell · móvil · L1</td><td>H1 (texto)</td><td>70</td><td>–</td><td>–</td><td style="color:#DD171B">9.077</td><td>9.147</td></tr>
+<tr><td>Dell · escritorio · L2</td><td>Foto</td><td>69</td><td>6</td><td>325</td><td style="color:#DD171B">1.496</td><td>1.896</td></tr>
+<tr><td>Whirlpool · móvil · L1</td><td>Banner</td><td style="color:#DD171B">1.009</td><td style="color:#DD171B">3.517</td><td>923</td><td>55</td><td>5.504</td></tr>
+<tr><td>Whirlpool · móvil · L2</td><td>Foto</td><td>70</td><td style="color:#DD171B">8.554</td><td>763</td><td>709</td><td>10.096</td></tr>
+<tr><td>Whirlpool · escritorio · L1</td><td>Foto</td><td>43</td><td>7</td><td>380</td><td style="color:#DD171B">16.650</td><td>17.080</td></tr>
+<tr><td>Whirlpool · escritorio · L2</td><td>Foto</td><td>151</td><td>15</td><td>313</td><td style="color:#DD171B">1.534</td><td>2.012</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">A3</p>
+<aside>El LCP se divide en cuatro partes. Lo ideal es que los dos retrasos sean casi cero. Aquí dominan los retrasos: en móvil el retraso de carga, porque el recurso se pide tarde; en escritorio el retraso de render, porque la imagen ya está descargada pero la galería todavía no existe. La duración de descarga de la imagen nunca es el problema: menos de un segundo.</aside>
+</section>

@@ -1,0 +1,18 @@
+<section id="inventario-async" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Anexo A6 · Inventario</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:48px;font-weight:700;line-height:1.1;color:#2E2A28">Los scripts diferidos y de marketing no bloquean, pero compiten por procesador y red</h2>
+</div>
+<table style="font-size:24px;color:#444444;border:1px solid #E4E0DC">
+<tr style="background:#F0ECE7"><th style="width:34%">Script</th><th style="width:22%">Carga</th><th style="width:44%">Efecto medido</th></tr>
+<tr><td>scripts.sirv.com sirv.js</td><td style="color:#8A6A00">head · defer, crítico</td><td>Arma la galería. Retraso de render 1,4–1,9 s en escritorio; en móvil arranca a ~8 s</td></tr>
+<tr><td>pdp_responsive.min.js → relocateMainTitleForMobile()</td><td style="color:#8A6A00">body · defer</td><td>Mueve el H1 después de DCL: LCP intermedio tardío (8,2–9,1 s); luego la foto pasa a ser el LCP</td></tr>
+<tr><td>GTM (gtm.js + 5 gtag + 4 Ads)</td><td>async · pesado</td><td>2,3 s de hilo principal; ~1,33 MB de JS. Bloqueado: LCP −0,99 s (2 corridas)</td></tr>
+<tr><td>Contentsquare</td><td>async · pesado</td><td>1,8 s de hilo principal; 174 kB</td></tr>
+<tr><td>Facebook, TikTok, Storyly, Kevel</td><td>async</td><td>Hilo principal: FB 516 ms, Storyly 312 ms, TikTok 284 ms</td></tr>
+<tr><td>jQuery, Bootstrap 3, Algolia, Splide, webcomponents</td><td>defer / module</td><td>Llevan DCL a 8,6–9,5 s en móvil; algoliasearch@5.20.0 se carga dos veces</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">A6</p>
+<aside>Defer y async no significan gratis. sirv.js es defer y es precisamente el que pinta la foto, así que su retraso es nuestro retraso. pdp_responsive mueve el título en móvil, lo que genera un nuevo LCP. Y los tags de marketing, sobre todo GTM y Contentsquare, ocupan varios segundos de procesador en un teléfono lento y compiten por ancho de banda con la foto.</aside>
+</section>

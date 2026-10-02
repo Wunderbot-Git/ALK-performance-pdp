@@ -1,0 +1,18 @@
+<section id="medidas" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#1F7A42">Solución</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:52px;font-weight:700;line-height:1.15;color:#2E2A28">Cinco medidas priorizadas por impacto y esfuerzo; las tres primeras son cambios de plantilla</h2>
+</div>
+<table style="font-size:24px;color:#444444;border:1px solid #E4E0DC">
+<tr style="background:#F0ECE7"><th style="width:5%">#</th><th style="width:34%">Medida</th><th style="width:23%">Impacto</th><th style="width:11%">Esfuerzo</th><th style="width:14%">Responsable</th><th style="width:13%">Evidencia</th></tr>
+<tr style="background:#FDEEE9"><td><b>1</b></td><td><b>Mostrar la primera foto directamente en la página</b></td><td style="color:#1F7A42"><b>Alto:</b> −3,0 s en celular</td><td>Medio</td><td>Dev + Sirv</td><td>Prototipo, 5 corridas</td></tr>
+<tr style="background:#FDEEE9"><td><b>2</b></td><td><b>Cargar el widget de reseñas sin frenar la página</b></td><td style="color:#1F7A42"><b>Medio:</b> evita esperas de 8–10 s</td><td>Bajo</td><td>Dev</td><td>Prototipo y 3 pruebas</td></tr>
+<tr style="background:#FDEEE9"><td><b>3</b></td><td><b>Alojar los archivos críticos en servidores de Alkosto</b></td><td style="color:#1F7A42"><b>Riesgo:</b> evita caídas de hasta 17 s</td><td>Bajo</td><td>Dev</td><td>1 de 6 corridas</td></tr>
+<tr><td>4</td><td>Revisar la herramienta de A/B testing y los tags de marketing</td><td><b>Medio:</b> ~1 s cada uno (indicio)</td><td>Medio</td><td>Marketing + Dev</td><td>2 corridas c/u</td></tr>
+<tr><td>5</td><td>Guardar la página en el caché del CDN</td><td><b>Medio:</b> hasta 0,9 s de respuesta del servidor</td><td>Alto</td><td>Plataforma</td><td>Datos de campo</td></tr>
+</table>
+<p style="font-size:24px;color:#5C5C5C">Los efectos no se suman: las medidas actúan sobre la misma cadena. Detalle técnico: anexos A10 y A11.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B6560">Fuente: prototipo y 2 auditorías de laboratorio, 02.10.2026; Chrome UX Report</p>
+<p style="position:absolute;right:128px;bottom:64px;width:120px;font-size:24px;color:#6B6560;text-align:right">9</p>
+<aside>Ordenamos las medidas por impacto y esfuerzo. Las tres primeras son cambios en la plantilla de la página de producto, que puede hacer el equipo de desarrollo: la foto directamente en la página, el widget de reseñas sin frenar la carga, y alojar en nuestros servidores archivos que hoy dependen de terceros. Las medidas 4 y 5 necesitan coordinación con Marketing y con Plataforma. Los efectos no se suman, porque todas actúan sobre la misma cadena.</aside>
+</section>
