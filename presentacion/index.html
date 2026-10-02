@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auditoría PDP Alkosto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  /* Presentación: 15 diapositivas de 1920×1080, escaladas a la ventana.
+     Navegación: ← → / espacio / clic. N muestra u oculta las notas del orador. */
+  html, body { margin: 0; height: 100%; background: #1A1B1E; overflow: hidden; }
+  #escenario { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center; }
+  #escenario > section { position: absolute; inset: 0; width: 1920px; height: 1080px; box-sizing: border-box; overflow: hidden; display: none !important; }
+  #escenario > section.activa { display: flex !important; }
+  #escenario > section[style*="display:grid"].activa { display: grid !important; }
+  section * { margin: 0; box-sizing: border-box; }
+  section ul, section ol { padding-left: 1.2em; }
+  section table { border-collapse: collapse; width: 100%; }
+  section th, section td { padding: 0.35em 0.6em; border-bottom: 1px solid #E4E0DC; text-align: left; vertical-align: top; }
+  section aside { display: none; }
+  #notas { position: fixed; left: 0; right: 0; bottom: 0; max-height: 35vh; overflow: auto; background: rgba(20,20,22,.94); color: #EEE;
+           font: 16px/1.5 system-ui, sans-serif; padding: 16px 24px; display: none; }
+  #notas.visible { display: block; }
+  #contador { position: fixed; right: 16px; top: 12px; color: #9A948E; font: 13px system-ui, sans-serif; }
+</style>
+</head>
+<body>
+<div id="escenario">
+<section id="cover" data-transition="fade" style="background:#06376F;color:#FBFAF8;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<div style="width:160px;height:12px;background:#EB5B25;border-radius:6px"></div>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#F5AD92">alkosto.com · Páginas de producto · Auditoría de laboratorio</p>
+<h1 style="font-family:'Archivo', Arial, sans-serif;font-size:104px;font-weight:800;line-height:1.05;color:#FBFAF8">La foto del producto espera a la galería</h1>
+<p style="font-size:28px;line-height:1.4;color:#C9D6E8;width:1300px">Auditoría de scripts y LCP en tres PDP: OPPO A6, Dell Essential 15,6″ y Whirlpool 21 kg</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#C9D6E8">2 de octubre de 2026 · Chrome DevTools · móvil y escritorio, caché fría</p>
+<aside>Auditoría de laboratorio de tres páginas de producto de alkosto.com. Pregunta central: ¿qué parte del JavaScript retrasa la imagen principal y el LCP? Medimos móvil (red Slow 4G, CPU 4 veces más lenta) y escritorio sin limitación, siempre con caché vacía, como un visitante nuevo.</aside>
+</section>
+<section id="resumen" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Resumen ejecutivo</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">En móvil, el cliente ve la foto del producto a los 8–11 segundos</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#DD171B">8–11 s</p>
+<p style="font-size:24px;line-height:1.35;color:#5C5C5C">Foto del producto visible en móvil (3 PDP, 2 auditorías independientes)</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#B14B25">2,0–2,4 s</p>
+<p style="font-size:24px;line-height:1.35;color:#5C5C5C">LCP en escritorio; de eso, 1,4–1,9 s son solo espera de render</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#1F7A42">−3,0 s</p>
+<p style="font-size:24px;line-height:1.35;color:#5C5C5C">Prototipo: primera foto en el HTML, móvil 6,45 → 3,49 s (mediana, 5 corridas)</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4">La galería la arma JavaScript (Sirv) y queda invisible hasta que Sirv termina. Sirv arranca solo cuando el navegador terminó de leer el HTML, y el widget de Reviews.io sin <b>defer</b> puede retrasar esa lectura.</p>
+<p style="font-size:28px;line-height:1.4"><b>Meta:</b> foto en móvil &lt; 3,5 s en laboratorio (alcanzado en el prototipo) y &lt; 1 s en escritorio (estimación); LCP de campo (p75) &lt; 2,5 s en todas las PDP.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">2</p>
+<aside>Tres cifras. En móvil, con red lenta, la foto del producto aparece recién entre los 8 y 11 segundos; lo confirman dos auditorías independientes. En escritorio la foto ya está descargada a los 0,5 segundos, pero se pinta a los 2 segundos porque la galería la construye JavaScript. Y el resultado del prototipo: si la primera foto viene directamente en el HTML, se ve a los 3,5 segundos en lugar de 6,5. Ese es el cambio con más impacto medido.</aside>
+</section>
+<section id="uno-de-49" data-transition="fade" style="background:#06376F;color:#FBFAF8;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:200px;font-weight:800;line-height:1;color:#F5AD92">1 de 49</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.15;color:#FBFAF8">scripts externos bloquea el render. Aun así, la foto llega a los 8–11 s.</h2>
+<p style="font-size:28px;line-height:1.4;color:#C9D6E8">El problema es el orden de las dependencias, no la cantidad de scripts.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#C9D6E8">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#C9D6E8;text-align:right">3</p>
+<aside>El consejo típico es contar los scripts que bloquean el render. En nuestras PDP solo hay uno de 49: varify.js. Si nos quedáramos ahí, pensaríamos que todo está bien. Pero la foto llega a los 11 segundos. El motivo es una cadena de dependencias: scripts síncronos en el body detienen la lectura del HTML, y la galería espera a que esa lectura termine.</aside>
+</section>
+<section id="cadena" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">La cadena · OPPO A6 · móvil</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">Por qué la foto llega tan tarde</h2>
+</div>
+<p style="font-size:24px;line-height:1.3"><span style="color:#DD171B">Rojo: bloquea el parser</span> · <span style="color:#8A6A00">Amarillo: CSS bloqueante</span> · <span style="color:#3F5F8F">Azul: cadena defer/Sirv</span> · <span style="color:#B14B25">Naranja: foto hoy</span> · <span style="color:#1F7A42">Verde: foto con la prueba</span></p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;text-transform:uppercase;color:#6B6560">Hoy · corrida 2 · FCP 4,16 s · DCL 9,32 s</p>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px">
+<p style="width:560px;flex:none;font-size:24px;line-height:1.2"><b>alkosto_pdp.min.css</b> · 0,65–3,98 s</p>
+<div style="position:relative;flex:1;height:36px;background:#F0ECE7;border-radius:4px">
+<div style="position:absolute;left:58px;top:6px;width:297px;height:24px;background:#ECBA18;border-radius:4px"></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px">
+<p style="width:560px;flex:none;font-size:24px;line-height:1.2"><b>varify.js</b> (head, síncrono) · 0,64–2,99 s</p>
+<div style="position:relative;flex:1;height:36px;background:#F0ECE7;border-radius:4px">
+<div style="position:absolute;left:57px;top:6px;width:210px;height:24px;background:#DD171B;border-radius:4px"></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px">
+<p style="width:560px;flex:none;font-size:24px;line-height:1.2"><b>reviews.io build.js</b> (body) · 1,17–7,62 s</p>
+<div style="position:relative;flex:1;height:36px;background:#F0ECE7;border-radius:4px">
+<div style="position:absolute;left:105px;top:6px;width:576px;height:24px;background:#DD171B;border-radius:4px"></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px">
+<p style="width:560px;flex:none;font-size:24px;line-height:1.2"><b>sirv.js</b> (defer) · corre recién a ~8,0 s</p>
+<div style="position:relative;flex:1;height:36px;background:#F0ECE7;border-radius:4px">
+<div style="position:absolute;left:57px;top:6px;width:348px;height:24px;background:#7C97BD;border-radius:4px"></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px">
+<p style="width:560px;flex:none;font-size:24px;line-height:1.2"><b>Sirv .view</b> (JSON) · 8,05–8,87 s</p>
+<div style="position:relative;flex:1;height:36px;background:#F0ECE7;border-radius:4px">
+<div style="position:absolute;left:719px;top:6px;width:73px;height:24px;background:#7C97BD;border-radius:4px"></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px">
+<p style="width:560px;flex:none;font-size:24px;line-height:1.2"><b>Foto del producto</b> · 9,70–10,97 s</p>
+<div style="position:relative;flex:1;height:36px;background:#F0ECE7;border-radius:4px">
+<div style="position:absolute;left:866px;top:6px;width:113px;height:24px;background:#EB5B25;border-radius:4px"></div>
+</div>
+</div>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;text-transform:uppercase;color:#6B6560">Prueba · Reviews.io neutralizado</p>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px">
+<p style="width:560px;flex:none;font-size:24px;line-height:1.2"><b>Sirv .view</b> (JSON) · 4,89–5,82 s</p>
+<div style="position:relative;flex:1;height:36px;background:#F0ECE7;border-radius:4px">
+<div style="position:absolute;left:437px;top:6px;width:83px;height:24px;background:#7C97BD;border-radius:4px"></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:32px">
+<p style="width:560px;flex:none;font-size:24px;line-height:1.2"><b>Foto del producto</b> · 6,56–7,51 s</p>
+<div style="position:relative;flex:1;height:36px;background:#F0ECE7;border-radius:4px">
+<div style="position:absolute;left:586px;top:6px;width:85px;height:24px;background:#1DA04E;border-radius:4px"></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="width:560px;flex:none"></div>
+<div style="flex:1;display:flex;flex-direction:row;justify-content:space-between">
+<p style="font-size:24px;color:#6B6560">0 s</p>
+<p style="font-size:24px;color:#6B6560">2</p>
+<p style="font-size:24px;color:#6B6560">4</p>
+<p style="font-size:24px;color:#6B6560">6</p>
+<p style="font-size:24px;color:#6B6560">8</p>
+<p style="font-size:24px;color:#6B6560">10</p>
+<p style="font-size:24px;color:#6B6560">12 s</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">4</p>
+<aside>Leer de arriba hacia abajo. El script de Reviews.io está en el body sin defer: el navegador deja de leer el HTML hasta que ese archivo llega, a los 7,6 segundos. sirv.js es defer, así que espera a que termine la lectura. Recién entonces pide un JSON con la lista de imágenes y luego la foto. Resultado: 9,7 a 11 segundos. Abajo, la misma página con Reviews.io neutralizado: todo se adelanta unos 3,5 segundos.</aside>
+</section>
+<section id="trampa" style="background:#F3F0EC;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Trampa de medición</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">El banner del preheader tapa el problema</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;text-transform:uppercase;color:#6B6560">Lo que reporta Chrome</p>
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#B14B25">5,0–5,7 s</p>
+<p style="font-size:28px;line-height:1.4">LCP = banner “Expotronika” (imagen de fondo CSS), en algunas corridas móviles</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFC;border:2px solid #DD171B;border-radius:16px;padding:40px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;text-transform:uppercase;color:#6B6560">Lo que ve el cliente</p>
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#DD171B">~10–11 s</p>
+<p style="font-size:28px;line-height:1.4">Recién ahí aparece la foto del producto</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4">Pasa de forma esporádica: 3 de 6 corridas en una auditoría, 1 de 5 en el prototipo, 0 de 12 en la otra. La galería está en <b>opacity: 0</b> hasta que Sirv marca <b>is-ready</b>. Por eso medimos cuándo se ve la foto, no solo el número de LCP.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">5</p>
+<aside>Ojo con el número que reporta Chrome. En móvil, el elemento más grande que se pinta temprano es a menudo el banner del preheader, no la foto. Por eso el LCP parece de 5 segundos cuando el cliente espera 10 u 11 por la foto. Cuando arreglemos la cadena, la foto volverá a ser el elemento LCP y el número puede subir temporalmente. Conviene anticiparlo en los reportes.</aside>
+</section>
+<section id="mediciones" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Mediciones</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">LCP por PDP y dispositivo</h2>
+</div>
+<table style="font-size:24px;color:#444444;border:1px solid #E4E0DC">
+<tr style="background:#F0ECE7"><th style="width:13%">PDP</th><th style="width:13%">Dispositivo</th><th style="width:10%">LCP L1</th><th style="width:10%">LCP L2</th><th style="width:10%">Mediana</th><th style="width:26%">Elemento LCP</th><th style="width:18%">Foto cargada</th></tr>
+<tr><td>OPPO A6</td><td>Móvil</td><td>5,72 s</td><td>5,01 s</td><td>5,37 s</td><td>Banner (fondo CSS)</td><td style="color:#DD171B">10,98 / 10,97 s</td></tr>
+<tr><td>OPPO A6</td><td>Escritorio</td><td>2,40 s</td><td>2,20 s</td><td>2,30 s</td><td>Foto</td><td>0,51 s</td></tr>
+<tr><td>Dell 15,6″</td><td>Móvil</td><td style="color:#DD171B">9,15 s</td><td style="color:#DD171B">8,83 s</td><td style="color:#DD171B">8,99 s</td><td>H1 movido por JS (ya pintado a 4,7 s)</td><td style="color:#DD171B">10,38 / 10,21 s</td></tr>
+<tr><td>Dell 15,6″</td><td>Escritorio</td><td>1,90 s</td><td>1,90 s</td><td>1,90 s</td><td>Foto</td><td>–</td></tr>
+<tr><td>Whirlpool</td><td>Móvil</td><td>5,50 s</td><td style="color:#DD171B">10,10 s</td><td>7,80 s</td><td>L1 banner · L2 foto</td><td style="color:#DD171B">10,93 / 9,39 s</td></tr>
+<tr><td>Whirlpool</td><td>Escritorio</td><td style="color:#DD171B">17,08 s</td><td>2,01 s</td><td>(9,5 s)</td><td>Foto (L1: CSS de jsDelivr colgado 15,4 s)</td><td>–</td></tr>
+</table>
+<p style="font-size:24px;line-height:1.35;color:#5C5C5C">2 corridas por caso, caché fría; con 2 corridas la mediana es el promedio. Móvil: Slow 4G · CPU 4× · 412×823. Escritorio: sin limitación · 1440×900.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">6</p>
+<aside>El patrón se repite en las tres PDP. En móvil la foto llega entre 9,4 y 11 segundos. En escritorio el LCP está entre 1,9 y 2,4 segundos. Dos casos especiales: en Dell móvil el LCP es el título H1, que un script mueve de lugar después de cargar. Y en Whirlpool escritorio una corrida dio 17 segundos porque un CSS de jsDelivr se colgó 15 segundos. Valores en rojo: fuera de lo aceptable.</aside>
+</section>
+<section id="desglose" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Desglose del LCP</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">Dónde se pierde el tiempo (ms)</h2>
+</div>
+<table style="font-size:24px;color:#444444;border:1px solid #E4E0DC">
+<tr style="background:#F0ECE7"><th style="width:24%">Corrida</th><th style="width:16%">Elemento</th><th style="width:10%;text-align:right">TTFB</th><th style="width:13%;text-align:right">Retraso de carga</th><th style="width:13%;text-align:right">Duración de carga</th><th style="width:13%;text-align:right">Retraso de render</th><th style="width:11%;text-align:right">LCP</th></tr>
+<tr><td>OPPO · móvil · L1</td><td>Banner</td><td>84</td><td style="color:#DD171B">4.010</td><td>892</td><td>736</td><td>5.722</td></tr>
+<tr><td>OPPO · escritorio · L2</td><td>Foto</td><td>58</td><td>6</td><td>380</td><td style="color:#DD171B">1.755</td><td>2.199</td></tr>
+<tr><td>Dell · móvil · L1</td><td>H1 (texto)</td><td>70</td><td>–</td><td>–</td><td style="color:#DD171B">9.077</td><td>9.147</td></tr>
+<tr><td>Dell · escritorio · L2</td><td>Foto</td><td>69</td><td>6</td><td>325</td><td style="color:#DD171B">1.496</td><td>1.896</td></tr>
+<tr><td>Whirlpool · móvil · L1</td><td>Banner</td><td style="color:#DD171B">1.009</td><td style="color:#DD171B">3.517</td><td>923</td><td>55</td><td>5.504</td></tr>
+<tr><td>Whirlpool · móvil · L2</td><td>Foto</td><td>70</td><td style="color:#DD171B">8.554</td><td>763</td><td>709</td><td>10.096</td></tr>
+<tr><td>Whirlpool · escritorio · L1</td><td>Foto</td><td>43</td><td>7</td><td>380</td><td style="color:#DD171B">16.650</td><td>17.080</td></tr>
+<tr><td>Whirlpool · escritorio · L2</td><td>Foto</td><td>151</td><td>15</td><td>313</td><td style="color:#DD171B">1.534</td><td>2.012</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">7</p>
+<aside>El LCP se divide en cuatro partes. Lo ideal es que los dos retrasos sean casi cero. Aquí dominan los retrasos: en móvil el retraso de carga, porque el recurso se pide tarde; en escritorio el retraso de render, porque la imagen ya está descargada pero la galería todavía no existe. La duración de descarga de la imagen nunca es el problema: menos de un segundo.</aside>
+</section>
+<section id="hallazgos" style="background:#F3F0EC;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Hallazgos</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">Cuatro causas detrás de los retrasos</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Escritorio: cargada, no pintada</h3>
+<p style="font-size:24px;line-height:1.4">La imagen carga en 0,4–0,5 s gracias al preload. Los 1,4–1,9 s de retraso de render se van en sirv.js → JSON .view → armar la galería.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Móvil: preload desperdiciado</h3>
+<p style="font-size:24px;line-height:1.4">Se precarga w=800&amp;q=60 (lista a los 1,8 s), pero Sirv pide w=400. El parser llega a la galería recién a los 4,5 s.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Banner como fondo CSS</h3>
+<p style="font-size:24px;line-height:1.4">El preheader usa background-image en un &lt;style&gt; inline. El navegador lo pide solo cuando todo el CSS cargó: 4,1–4,5 s, con prioridad baja.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">HTML sin caché en el edge</h3>
+<p style="font-size:24px;line-height:1.4">El HTML sale directo del origen SAP Commerce (pragma: no-cache). Con caché fría, TTFB de 1,0 s; en campo, p75 de 0,85–0,95 s.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">8</p>
+<aside>Cuatro hallazgos adicionales. Uno: en escritorio la imagen ya está, pero no se pinta hasta que Sirv arma la galería. Dos: en móvil precargamos una versión de la imagen que Sirv nunca usa. Tres: el banner del preheader es un fondo CSS, y esos se descargan tarde. Cuatro: el HTML no está en caché en el CDN, lo que cuesta casi un segundo de TTFB para usuarios reales.</aside>
+</section>
+<section id="inventario-bloqueo" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Inventario · 92 etiquetas script · 49 externas</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">Lo que bloquea la lectura del HTML</h2>
+</div>
+<table style="font-size:24px;color:#444444;border:1px solid #E4E0DC">
+<tr style="background:#F0ECE7"><th style="width:34%">Script</th><th style="width:22%">Carga</th><th style="width:44%">Efecto medido</th></tr>
+<tr><td>reviews.io polaris/build.js + rich-snippet/dist.js</td><td style="color:#DD171B">body · síncrono</td><td>build.js termina a los 6,6–7,6 s y frena parser, DCL y Sirv. Prueba: −3,5 s en la foto</td></tr>
+<tr><td>CSS jsDelivr autocomplete-theme-classic (sin versión)</td><td style="color:#DD171B">body · antes de un script inline</td><td>El script inline espera a este CSS. 1 de 6 corridas: 15,4 s → LCP 17,1 s</td></tr>
+<tr><td>app.varify.io/varify.js (A/B testing)</td><td style="color:#DD171B">head · síncrono</td><td>Bloquea el render 0,64–3,0 s. Bloqueado: FCP igual, LCP −1,18 s (2 corridas)</td></tr>
+<tr><td>alkosto-ia.min.js (solo Dell)</td><td style="color:#DD171B">body · síncrono</td><td>1,1–2,4 s; atributos sin renderizar ({{product_id}}) y data-debug="true" en producción</td></tr>
+<tr><td>Inline var ACC={config…} (116 KB)</td><td style="color:#DD171B">head · inline</td><td>Espera al CSS (hasta 4,0 s) y luego parsea 116 KB</td></tr>
+</table>
+<p style="font-size:24px;line-height:1.35;color:#5C5C5C">Solo varify.js cuenta como “render-blocking” (1 de 49, 2 %). Los demás bloquean el parser, y eso no aparece en esa métrica.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">9</p>
+<aside>Estos son los elementos que detienen la lectura del HTML. El más dañino es Reviews.io. El segundo es un CSS de jsDelivr sin número de versión, ubicado justo antes de un script inline: los scripts inline esperan a todo el CSS anterior, así que si ese archivo se cuelga, se cuelga toda la página. Varify es el único que la métrica clásica marca como bloqueante. En la PDP de Dell además aparece el widget de IA de Alkosto, cargado síncrono y con datos de plantilla sin reemplazar.</aside>
+</section>
+<section id="inventario-async" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Inventario · defer y async</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">No bloquean, pero igual cuestan</h2>
+</div>
+<table style="font-size:24px;color:#444444;border:1px solid #E4E0DC">
+<tr style="background:#F0ECE7"><th style="width:34%">Script</th><th style="width:22%">Carga</th><th style="width:44%">Efecto medido</th></tr>
+<tr><td>scripts.sirv.com sirv.js</td><td style="color:#8A6A00">head · defer, crítico</td><td>Arma la galería. Retraso de render 1,4–1,9 s en escritorio; en móvil arranca a ~8 s</td></tr>
+<tr><td>pdp_responsive.min.js → relocateMainTitleForMobile()</td><td style="color:#8A6A00">body · defer</td><td>Mueve el H1 después de DCL: LCP intermedio tardío (8,2–9,1 s); luego la foto pasa a ser el LCP</td></tr>
+<tr><td>GTM (gtm.js + 5 gtag + 4 Ads)</td><td>async · pesado</td><td>2,3 s de hilo principal; ~1,33 MB de JS. Bloqueado: LCP −0,99 s (2 corridas)</td></tr>
+<tr><td>Contentsquare</td><td>async · pesado</td><td>1,8 s de hilo principal; 174 kB</td></tr>
+<tr><td>Facebook, TikTok, Storyly, Kevel</td><td>async</td><td>Hilo principal: FB 516 ms, Storyly 312 ms, TikTok 284 ms</td></tr>
+<tr><td>jQuery, Bootstrap 3, Algolia, Splide, webcomponents</td><td>defer / module</td><td>Llevan DCL a 8,6–9,5 s en móvil; algoliasearch@5.20.0 se carga dos veces</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">10</p>
+<aside>Defer y async no significan gratis. sirv.js es defer y es precisamente el que pinta la foto, así que su retraso es nuestro retraso. pdp_responsive mueve el título en móvil, lo que genera un nuevo LCP. Y los tags de marketing, sobre todo GTM y Contentsquare, ocupan varios segundos de procesador en un teléfono lento y compiten por ancho de banda con la foto.</aside>
+</section>
+<section id="pruebas" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Prototipo · OPPO · móvil · 5 corridas por variante</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">Lo que los cambios logran de verdad</h2>
+</div>
+<table style="font-size:24px;color:#444444;border:1px solid #E4E0DC">
+<tr style="background:#F0ECE7"><th style="width:14%">Variante</th><th style="width:40%">Cambio en el HTML</th><th style="width:16%;text-align:right">Foto visible (mediana)</th><th style="width:16%;text-align:right">Rango</th><th style="width:14%;text-align:right">Δ</th></tr>
+<tr><td>Base</td><td>sin cambios</td><td>6,45 s</td><td>6,20–9,76 s</td><td>–</td></tr>
+<tr><td>Reviews</td><td>defer en build.js y rich-snippet; inits en DOMContentLoaded</td><td>5,99 s</td><td>5,58–6,88 s</td><td>−0,46 s</td></tr>
+<tr style="background:#F3FFF7"><td><b>Foto</b></td><td>&lt;img fetchpriority="high"&gt; visible (w=400) en la galería; preload móvil w=400</td><td><b>3,49 s</b></td><td>3,22–3,78 s</td><td style="color:#1F7A42"><b>−2,96 s</b></td></tr>
+<tr style="background:#F3FFF7"><td><b>Ambos</b></td><td>Reviews + Foto</td><td><b>3,17 s</b></td><td>2,92–3,27 s</td><td style="color:#1F7A42"><b>−3,28 s</b></td></tr>
+</table>
+<p style="font-size:24px;line-height:1.35;color:#5C5C5C">Reviews.io pesa poco cuando build.js llega temprano, pero si llega tarde la foto se va a 8–10 s; bloqueado, −3,5 s (máximo). Pruebas de otra auditoría: Varify −1,18 s, GTM −0,99 s (2 corridas c/u, indicio).</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">11</p>
+<aside>Hicimos un prototipo: interceptamos el HTML de la PDP y lo modificamos antes de que llegue al navegador, cinco corridas por variante, alternando el orden. Con la primera foto directamente en el HTML, se ve a los 3,5 segundos en lugar de 6,5, casi al mismo tiempo que el primer pintado, y con muy poca variación. Reviews.io con defer ayuda poco en la mediana, pero evita los casos lentos. Límites: el HTML en este montaje no pasa por la red limitada, por eso todos los valores son más bajos que en la medición general; lo que cuenta es la comparación entre variantes. Una corrida de Reviews se colgó 35 segundos por causa no identificada. Solo se probó la PDP de OPPO; Dell y Whirlpool usan la misma plantilla.</aside>
+</section>
+<section id="medidas-1" data-transition="fade" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Medidas 1–3 · por impacto y esfuerzo</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">Qué hacer primero</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;align-items:start;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:32px 40px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#EB5B25;width:56px;flex:none">1</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Primera foto del producto en el HTML</h3>
+<p style="font-size:24px;line-height:1.35">&lt;img fetchpriority="high"&gt; visible con la misma URL que pide Sirv (w=400 móvil, w=700 escritorio); preload móvil igual. Ocultarla al quedar Sirv listo.</p>
+</div>
+<div style="width:380px;flex:none;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:700;line-height:1.3;color:#1F7A42">−3,0 s foto móvil · prototipo, 5 corridas</p>
+<p style="font-size:24px;line-height:1.3;color:#5C5C5C">Esfuerzo medio · Dev + Sirv</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;align-items:start;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:32px 40px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#EB5B25;width:56px;flex:none">2</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Sacar Reviews.io de la ruta crítica</h3>
+<p style="font-size:24px;line-height:1.35">build.js y rich-snippet con defer; los inits inline en DOMContentLoaded, o cargar al llegar a las reseñas. Igual para alkosto-ia.min.js.</p>
+</div>
+<div style="width:380px;flex:none;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:700;line-height:1.3;color:#1F7A42">−0,5 s mediana; hasta −3,5 s si build.js llega tarde</p>
+<p style="font-size:24px;line-height:1.3;color:#5C5C5C">Esfuerzo bajo · Dev</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;align-items:start;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:32px 40px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#EB5B25;width:56px;flex:none">3</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">CSS crítico sin URLs de terceros sin versión</h3>
+<p style="font-size:24px;line-height:1.35">Fijar autocomplete-theme-classic@1.18.0, alojarlo en media.aws.alkomprar.com y llevarlo al &lt;head&gt;. Nunca un stylesheet en el body antes de un script inline.</p>
+</div>
+<div style="width:380px;flex:none;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:700;line-height:1.3;color:#1F7A42">Evita picos de hasta 17 s · medido (1 de 6)</p>
+<p style="font-size:24px;line-height:1.3;color:#5C5C5C">Esfuerzo bajo · Dev</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">12</p>
+<aside>Uno: entregar la primera foto directamente en el HTML, con la misma URL que Sirv pide después. Es el cambio con mayor impacto medido en el prototipo: tres segundos menos y casi sin variación. Hay que ocultarla o reemplazarla cuando Sirv esté listo, para que no se vea doble. Dos: Reviews.io con defer o carga diferida; en la mediana ayuda poco, pero evita los casos en que la foto se va a 8 o 10 segundos. Tres: no depender de un CSS de jsDelivr sin versión, que en una corrida colgó la página 15 segundos.</aside>
+</section>
+<section id="medidas-2" style="background:#FBFAF8;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Medidas 4–5 · y después</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">Carga de tags y caché del HTML</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;align-items:start;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:32px 40px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#EB5B25;width:56px;flex:none">4</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Revisar Varify y la carga de tags</h3>
+<p style="font-size:24px;line-height:1.35">varify.js síncrono solo con test activo; si no, async con anti-flicker corto. Unificar gtag y Ads, quitar algoliasearch duplicado, Storyly y Kevel tras interacción.</p>
+</div>
+<div style="width:380px;flex:none;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:700;line-height:1.3;color:#B14B25">Varify −1,18 s · GTM −0,99 s · 2 corridas, indicio</p>
+<p style="font-size:24px;line-height:1.3;color:#5C5C5C">Esfuerzo medio · Marketing/CRO + proveedor</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:40px;align-items:start;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:32px 40px">
+<p style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1;color:#EB5B25;width:56px;flex:none">5</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Caché del HTML de PDP en el edge</h3>
+<p style="font-size:24px;line-height:1.35">Hoy el HTML sale del origen SAP Commerce (pragma: no-cache). Cachear la parte anónima en el CDN; precio, stock y carrito, del lado del cliente.</p>
+</div>
+<div style="width:380px;flex:none;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:24px;font-weight:700;line-height:1.3;color:#B14B25">TTFB de campo 0,85–0,95 s · ahorro estimado</p>
+<p style="font-size:24px;line-height:1.3;color:#5C5C5C">Esfuerzo alto · Dev + plataforma</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#E2E9F1;border-radius:16px;padding:32px 40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#004797">Después</h3>
+<p style="font-size:24px;line-height:1.35;color:#2E2A28">Banner del preheader como &lt;img fetchpriority="high"&gt; o solo texto · dividir alkosto_pdp.min.css (2,7 s en Slow 4G) en CSS crítico + resto · reemplazar relocateMainTitleForMobile() por CSS (crea un LCP intermedio tardío, sin ganancia propia).</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">13</p>
+<aside>Cuatro: Varify y los tags de marketing. Al bloquearlos, el LCP mejoró alrededor de un segundo cada uno, pero con solo dos corridas es un indicio; para negociar con Marketing conviene medir más. Cinco: cachear el HTML en el CDN. Hoy cada visita espera casi un segundo de respuesta del servidor en el percentil 75; es un cambio estructural con más esfuerzo. Después vienen mejoras menores: el banner, el CSS grande y el título que se mueve con JavaScript.</aside>
+</section>
+<section id="preguntas" style="background:#06376F;color:#FBFAF8;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#F5AD92">Chequeo rápido para el equipo</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#FBFAF8">Tres preguntas, respondidas</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#0D4482;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#F5AD92">¿Qué % de scripts bloquea el render?</h3>
+<p style="font-size:24px;line-height:1.4;color:#E4EBF4">1 de 49 externos (2 %): varify.js. Más 3 que bloquean el parser en el body (Dell: 4) y un script inline de 116 KB que espera al CSS.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#0D4482;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#F5AD92">% bajo, LCP malo: ¿qué se puede quitar?</h3>
+<p style="font-size:24px;line-height:1.4;color:#E4EBF4">El problema es la cadena, no la cantidad. Primero la foto en el HTML, luego Reviews.io. Después: algoliasearch y JSON-LD duplicados, gtag/Ads repetidos, data-debug.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#0D4482;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#F5AD92">¿Lo no crítico al final o con defer?</h3>
+<p style="font-size:24px;line-height:1.4;color:#E4EBF4">Sí, pero ojo: sirv.js ya es defer y aun así es crítico. Lo que pinta la imagen principal va en el HTML, no detrás de un script.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#C9D6E8">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#C9D6E8;text-align:right">14</p>
+<aside>Estas son las tres preguntas que suelen hacerse en este tipo de auditoría. La lección para el equipo: un porcentaje bajo de scripts bloqueantes no garantiza una página rápida. Hay que mirar la cadena completa hasta el elemento que el cliente quiere ver, en nuestro caso la foto del producto.</aside>
+</section>
+<section id="metodo" style="background:#F3F0EC;color:#444444;font-family:'Source Sans 3', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#B14B25">Método y límites</p>
+<h2 style="font-family:'Archivo', Arial, sans-serif;font-size:64px;font-weight:700;line-height:1.1;color:#2E2A28">Laboratorio frente a usuarios reales</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Cómo se midió</h3>
+<ul style="font-size:24px;line-height:1.4">
+<li>Chrome DevTools: trazas de rendimiento, Resource Timing, LCP y Long Animation Frames</li>
+<li>Cada corrida en un contexto de navegador nuevo y aislado (caché fría)</li>
+<li>Móvil: 412×823, Slow 4G, CPU 4×. Escritorio: 1440×900, sin limitación</li>
+<li>Contrastado con una segunda auditoría independiente (Playwright, Chrome 154, 12 corridas base)</li>
+<li>Prototipo: HTML modificado en vuelo, 4 variantes × 5 corridas</li>
+<li>Sin clics, sin aceptar cookies, nada al carrito</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFEFC;border:1px solid #E4E0DC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Archivo', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.15;color:#2E2A28">Campo (CrUX, p75)</h3>
+<ul style="font-size:24px;line-height:1.4">
+<li>OPPO móvil: LCP 2,49 s · INP 229 ms · CLS 0,05</li>
+<li>OPPO escritorio: LCP 2,76 s · TTFB 953 ms · CLS 0,16</li>
+<li>Dell móvil: LCP 3,07 s · TTFB 849 ms · INP 166 ms</li>
+<li>Whirlpool: sin datos en CrUX</li>
+</ul>
+<p style="font-size:24px;line-height:1.4;color:#5C5C5C">El laboratorio es más estricto que el usuario promedio, pero el campo muestra la misma estructura: retraso de carga de 1,2–1,6 s y TTFB cercano a 0,9 s.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B6560">Auditoría PDP · alkosto.com · 02.10.2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;color:#6B6560;text-align:right">15</p>
+<aside>Sobre el método: el laboratorio simula un teléfono lento con red lenta y caché vacía, a propósito más exigente que el usuario promedio. Los datos de campo de Chrome confirman que el problema es real: LCP de 2,5 a 3,1 segundos en el percentil 75, con el retraso de carga y el TTFB como partes más grandes. La campaña Expotronika del preheader es temporal; con otro banner puede cambiar el elemento LCP que reporta Chrome en móvil.</aside>
+</section>
+</div>
+<div id="contador"></div>
+<div id="notas"></div>
+<script>
+  const diapositivas = [...document.querySelectorAll('#escenario > section')];
+  const escenario = document.getElementById('escenario');
+  const notas = document.getElementById('notas');
+  const contador = document.getElementById('contador');
+  // La alineación definida en el encabezado (th) vale para toda la columna.
+  document.querySelectorAll('#escenario table').forEach(t => {
+    const ths = [...t.rows[0].cells];
+    [...t.rows].slice(1).forEach(fila => [...fila.cells].forEach((c, k) => {
+      if (ths[k] && ths[k].style.textAlign && !c.style.textAlign) c.style.textAlign = ths[k].style.textAlign;
+    }));
+  });
+  let i = Math.max(0, Math.min(diapositivas.length - 1, (parseInt(location.hash.slice(1), 10) || 1) - 1));
+  function ajustar() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    escenario.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  function mostrar(n) {
+    i = Math.max(0, Math.min(diapositivas.length - 1, n));
+    diapositivas.forEach((d, k) => d.classList.toggle('activa', k === i));
+    const aside = diapositivas[i].querySelector('aside');
+    notas.textContent = aside ? aside.textContent : '';
+    contador.textContent = `${i + 1} / ${diapositivas.length} · N: notas`;
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) mostrar(i + 1);
+    if (['ArrowLeft', 'PageUp'].includes(e.key)) mostrar(i - 1);
+    if (e.key === 'Home') mostrar(0);
+    if (e.key === 'End') mostrar(diapositivas.length - 1);
+    if (e.key.toLowerCase() === 'n') notas.classList.toggle('visible');
+  });
+  addEventListener('click', e => { if (!notas.contains(e.target)) mostrar(e.clientX > innerWidth / 2 ? i + 1 : i - 1); });
+  addEventListener('resize', ajustar);
+  ajustar(); mostrar(i);
+</script>
+</body>
+</html>
